@@ -11,10 +11,7 @@ import RxCocoa
 
 // 메모데이터 관련
 class MemoStorage: MemoStorageType {
-    private var memoList: [Memo] = [
-        Memo(id: 0, title: "테스트메모1", content: "내용"),
-        Memo(id: 1, title: "테스트메모2", content: "내용"),
-    ]
+    private var memoList: [Memo] = []
     
     private lazy var store = BehaviorRelay(value: memoList)
     

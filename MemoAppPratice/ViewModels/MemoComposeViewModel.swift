@@ -10,10 +10,23 @@ import RxSwift
 import RxCocoa
 
 class MemoComposeViewModel: ViewModelType {
-    var memoComposeRelay = BehaviorRelay<[String]>(value: ["", ""])
-    
+    var memoComposeSbuject = BehaviorRelay<Memo>(value: Memo(title: "", content: ""))
+    var currentMemo: Memo {
+        memoComposeSbuject.value
+    }
     override init(storage: MemoStorageType) {
         super.init(storage: storage)
     }
-
+    
+    func updateTitle(title: String) {
+        memoComposeSbuject.accept(Memo(id: currentMemo.id, title: title, content: currentMemo.content))
+    }
+    
+    func updateContent(content: String) {
+        memoComposeSbuject.accept(Memo(id: currentMemo.id, title: currentMemo.title, content: content))
+    }
+    
+    func performUpdate() {
+        storage.updateMemo(memo: memoComposeSbuject.value)
+    }
 }

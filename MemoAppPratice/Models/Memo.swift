@@ -14,9 +14,14 @@ struct Memo {
     var title: String
     var content: String    
     
-    init(id: Int, title: String, content: String) {        
+    init(id: Int, title: String, content: String) {
         self.id = id
         self.title = title
         self.content = content
+    }
+    
+    init(title: String, content: String) {
+        Memo.memoCount += 1
+        self.init(id: Memo.memoCount, title: title, content: content)
     }
 }

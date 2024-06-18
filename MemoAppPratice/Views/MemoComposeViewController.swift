@@ -29,11 +29,25 @@ class MemoComposeViewController: UIViewController, BindableType {
             .bind(to: saveButton.rx.isEnabled)
             .disposed(by: bag)
         
+        titleTextField.rx.text.orEmpty
+            .withUnretained(self)
+            .subscribe { (vc, text) in
+                vc.viewModel.updateTitle(title: text)
+            }
+            .disposed(by: bag)
+        
+        contentTextField.rx.text.orEmpty
+            .withUnretained(self)
+            .subscribe { (vc, text) in
+                vc.viewModel.updateContent(content: text)
+            }
+            .disposed(by: bag)
+        
         saveButton.rx.tap
             .withUnretained(self)
-            .subscribe { (vc, _) in
-                
-            }
+            .subscribe(onNext: {(vc, _) in
+                vc.viewModel.performUpdate()
+            })
             .disposed(by: bag)
     }
 }
