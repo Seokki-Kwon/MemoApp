@@ -19,7 +19,11 @@ class MemoComposeViewController: UIViewController, BindableType {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupUI()
+    }
+    
+    func setupUI() {
+        titleTextField.addBottomBorder()
     }
         
     func bindViewModel() {
