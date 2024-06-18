@@ -22,9 +22,9 @@ class MemoDetailViewController: UIViewController, BindableType {
         // 변경된 메모내용 -> UI에 바인딩
         viewModel.memoSubject
             .withUnretained(self)
-            .subscribe { (vc, values) in
-                vc.titleTextField.text = values[0]
-                vc.contentLabel.text = values[1]
+            .subscribe { (vc, memo) in
+                vc.titleTextField.text = memo.title
+                vc.contentLabel.text = memo.content
             }
             .disposed(by: bag)
         

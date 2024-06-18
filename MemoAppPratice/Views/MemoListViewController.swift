@@ -13,6 +13,7 @@ class MemoListViewController: UIViewController, BindableType {
     var viewModel: MemoListViewModel!
     private let bag = DisposeBag()
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         tableView.rowHeight = 180
@@ -24,6 +25,19 @@ class MemoListViewController: UIViewController, BindableType {
             .bind(to: tableView.rx.items(cellIdentifier: MemoTableViewCell.reuseIdentifier, cellType: MemoTableViewCell.self)) {row, memo, cell in
                 cell.titleLabel.text = memo.title
                 cell.contentLabel.text = memo.content                
+            }
+            .disposed(by: bag)
+        
+        addButton.rx.tap
+            .withUnretained(self)
+            .subscribe { (vc, _) in
+                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                guard var memoComposeVC = storyboard.instantiateViewController(withIdentifier: "MemoCompose") as? MemoComposeViewController else {
+                    fatalError()
+                }
+                memoComposeVC.bind(viewModel: MemoComposeViewModel(storage: self.viewModel.storage))
+                
+                vc.present(memoComposeVC, animated: true)
             }
             .disposed(by: bag)
         

@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		8213A0B02C213A4D00AAEEAC /* MemoDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213A0AF2C213A4D00AAEEAC /* MemoDetailViewModel.swift */; };
 		8213A0B22C213B0000AAEEAC /* MemoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213A0B12C213B0000AAEEAC /* MemoDetailViewController.swift */; };
+		8213A0B42C2165CA00AAEEAC /* MemoComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213A0B32C2165CA00AAEEAC /* MemoComposeViewController.swift */; };
+		8213A0B62C21685300AAEEAC /* MemoComposeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8213A0B52C21685300AAEEAC /* MemoComposeViewModel.swift */; };
 		82C88E7F2C1F4A7E00109913 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88E7E2C1F4A7E00109913 /* AppDelegate.swift */; };
 		82C88E812C1F4A7E00109913 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88E802C1F4A7E00109913 /* SceneDelegate.swift */; };
 		82C88E832C1F4A7E00109913 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88E822C1F4A7E00109913 /* ViewController.swift */; };
@@ -30,6 +32,8 @@
 /* Begin PBXFileReference section */
 		8213A0AF2C213A4D00AAEEAC /* MemoDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewModel.swift; sourceTree = "<group>"; };
 		8213A0B12C213B0000AAEEAC /* MemoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoDetailViewController.swift; sourceTree = "<group>"; };
+		8213A0B32C2165CA00AAEEAC /* MemoComposeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoComposeViewController.swift; sourceTree = "<group>"; };
+		8213A0B52C21685300AAEEAC /* MemoComposeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoComposeViewModel.swift; sourceTree = "<group>"; };
 		82C88E7B2C1F4A7E00109913 /* MemoAppPratice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoAppPratice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C88E7E2C1F4A7E00109913 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C88E802C1F4A7E00109913 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 				82C88E822C1F4A7E00109913 /* ViewController.swift */,
 				82C88EA72C1F580800109913 /* MemoListViewController.swift */,
 				8213A0B12C213B0000AAEEAC /* MemoDetailViewController.swift */,
+				8213A0B32C2165CA00AAEEAC /* MemoComposeViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -108,6 +113,7 @@
 		82C88E982C1F4AF500109913 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				8213A0B52C21685300AAEEAC /* MemoComposeViewModel.swift */,
 				82C88EA32C1F551400109913 /* MemoListViewModel.swift */,
 				8213A0AF2C213A4D00AAEEAC /* MemoDetailViewModel.swift */,
 				82C88EA52C1F552800109913 /* ViewModelType.swift */,
@@ -218,12 +224,14 @@
 				82C88E7F2C1F4A7E00109913 /* AppDelegate.swift in Sources */,
 				8213A0B02C213A4D00AAEEAC /* MemoDetailViewModel.swift in Sources */,
 				82C88EA02C1F4E2200109913 /* Memo.swift in Sources */,
+				8213A0B62C21685300AAEEAC /* MemoComposeViewModel.swift in Sources */,
 				82C88EA82C1F580800109913 /* MemoListViewController.swift in Sources */,
 				8213A0B22C213B0000AAEEAC /* MemoDetailViewController.swift in Sources */,
 				82C88E812C1F4A7E00109913 /* SceneDelegate.swift in Sources */,
 				82C88E9C2C1F4D6800109913 /* MemoTableViewCell.swift in Sources */,
 				82C88EAA2C1F586A00109913 /* BindableType.swift in Sources */,
 				82C88EA62C1F552800109913 /* ViewModelType.swift in Sources */,
+				8213A0B42C2165CA00AAEEAC /* MemoComposeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
