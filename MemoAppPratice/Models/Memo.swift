@@ -9,19 +9,7 @@ import Foundation
 import UIKit
 
 struct Memo {
-    static var memoCount = 0
-    let id: Int
+    var id: String = UUID().uuidString
     var title: String
-    var content: String    
-    
-    init(id: Int, title: String, content: String) {
-        self.id = id
-        self.title = title
-        self.content = content
-    }
-    
-    init(title: String, content: String) {
-        Memo.memoCount += 1
-        self.init(id: Memo.memoCount, title: title, content: content)
-    }
+    var content: String   
 }
