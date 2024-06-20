@@ -11,17 +11,20 @@ import RxCocoa
 
 // Input -> title, content, saveButtonTap
 // Output -> saveMemo, dismiss
+// ControlProperty: Subject같은 개념, UIElement.rx를 통해서 접근
+
 class MemoComposeViewModel: MemoViewModelType, ViewModelType {
     let bag = DisposeBag()
     private let memoSubject = BehaviorRelay(value: Memo(title: "", content: ""))
     private let dismissVCSubject = PublishSubject<Void>()
+    
     override init(storage: MemoStorageType) {
         super.init(storage: storage)
     }
     
     struct Input {
-        let inputTitle: Observable<String>
-        let inputContent: Observable<String>
+        let inputTitle: ControlProperty<String>
+        let inputContent: ControlProperty<String>
         let saveButtonTap: ControlEvent<Void>
     }
     

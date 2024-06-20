@@ -26,9 +26,10 @@ class MemoComposeViewController: UIViewController, BindableType {
         titleTextField.addBottomBorder()
     }
         
-    func bindViewModel() {        
+    func bindViewModel() {
         let input = MemoComposeViewModel.Input(
-            inputTitle: titleTextField.rx.text.orEmpty.asObservable(), inputContent: contentTextField.rx.text.orEmpty.asObservable(),
+            inputTitle: titleTextField.rx.text.orEmpty, 
+            inputContent: contentTextField.rx.text.orEmpty,
             saveButtonTap: saveButton.rx.tap)
                 
         let output = viewModel.transform(input: input)
