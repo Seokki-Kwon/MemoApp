@@ -35,6 +35,8 @@ class MemoStorage: MemoStorageType {
     }
     
     func deleteMemo(memo: Memo) -> Observable<Void> {
+        let newList = store.value.filter { memo.id != $0.id }
+        store.accept(newList)
         return Observable.empty()
     }
 }

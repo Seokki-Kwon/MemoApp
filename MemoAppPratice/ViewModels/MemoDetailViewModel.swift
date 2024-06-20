@@ -33,4 +33,8 @@ class MemoDetailViewModel: ViewModelType {
     func updateTitle(title: String) {
         memoSubject.accept(Memo(id: newMemo.id, title: title, content: newMemo.content))
     }
+    
+    func performDelete() {
+        storage.deleteMemo(memo: newMemo)
+    }
 }

@@ -51,7 +51,10 @@ class MemoComposeViewController: UIViewController, BindableType {
             .withUnretained(self)
             .subscribe(onNext: {(vc, _) in
                 vc.viewModel.performUpdate()
+                vc.dismiss(animated: true)
             })
             .disposed(by: bag)
+        
+        
     }
 }

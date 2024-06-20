@@ -202,7 +202,7 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqi-kt-DPw">
-                                <rect key="frame" x="172" y="763.66666666666663" width="49" height="34.333333333333371"/>
+                                <rect key="frame" x="161.66666666666666" y="728" width="70" height="70"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="70" id="imt-DO-1h9"/>
                                     <constraint firstAttribute="height" constant="70" id="tbX-L9-gl2"/>
@@ -229,6 +229,7 @@
                     </view>
                     <connections>
                         <outlet property="contentLabel" destination="zyj-ys-NOh" id="DlN-Id-tE7"/>
+                        <outlet property="deleteButton" destination="kqi-kt-DPw" id="pqX-9j-jHG"/>
                         <outlet property="editButton" destination="MzI-zn-6d4" id="ohr-xT-j72"/>
                         <outlet property="titleTextField" destination="Sen-cL-O67" id="fyb-AH-8yP"/>
                     </connections>

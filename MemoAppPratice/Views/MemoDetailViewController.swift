@@ -17,6 +17,7 @@ class MemoDetailViewController: UIViewController, BindableType {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentLabel: UITextView!
     @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var deleteButton: UIButton!
     
     func bindViewModel() {
         // 변경된 메모내용 -> UI에 바인딩
@@ -70,6 +71,15 @@ class MemoDetailViewController: UIViewController, BindableType {
             .scan(false) { lastState, newState in !lastState }
             .bind(to: viewModel.editModeSubject)
             .disposed(by: bag)
+        
+        deleteButton.rx.tap
+            .withUnretained(self)
+            .subscribe(onNext: {(vc, _) in
+                vc.viewModel.performDelete()
+                vc.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
+            
     }
     
     override func viewDidLoad() {
