@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MemoDetailViewModel: ViewModelType {
+class MemoDetailViewModel: MemoViewModelType {
     let memo: Memo
     lazy var memoSubject = BehaviorRelay<Memo>(value: memo)
     var editModeSubject = PublishSubject<Bool>()

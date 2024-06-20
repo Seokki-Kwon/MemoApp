@@ -26,35 +26,19 @@ class MemoComposeViewController: UIViewController, BindableType {
         titleTextField.addBottomBorder()
     }
         
-    func bindViewModel() {
-        // 내용입력 여부
-        Observable.combineLatest(titleTextField.rx.text.orEmpty, contentTextField.rx.text.orEmpty)
-            .map { !$0.0.isEmpty && !$0.1.isEmpty }
-            .bind(to: saveButton.rx.isEnabled)
+    func bindViewModel() {        
+        let input = MemoComposeViewModel.Input(
+            inputTitle: titleTextField.rx.text.orEmpty.asObservable(), inputContent: contentTextField.rx.text.orEmpty.asObservable(),
+            saveButtonTap: saveButton.rx.tap)
+                
+        let output = viewModel.transform(input: input)
+        
+        output.validate.drive(saveButton.rx.isEnabled)
             .disposed(by: bag)
         
-        titleTextField.rx.text.orEmpty
-            .withUnretained(self)
-            .subscribe { (vc, text) in
-                vc.viewModel.updateTitle(title: text)
-            }
-            .disposed(by: bag)
-        
-        contentTextField.rx.text.orEmpty
-            .withUnretained(self)
-            .subscribe { (vc, text) in
-                vc.viewModel.updateContent(content: text)
-            }
-            .disposed(by: bag)
-        
-        saveButton.rx.tap
-            .withUnretained(self)
-            .subscribe(onNext: {(vc, _) in
-                vc.viewModel.performUpdate()
-                vc.dismiss(animated: true)
-            })
-            .disposed(by: bag)
-        
-        
+        output.dismissView.subscribe(onCompleted:  {
+            self.dismiss(animated: true)
+        })
+        .disposed(by: bag)
     }
 }

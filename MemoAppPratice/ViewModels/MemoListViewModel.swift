@@ -9,7 +9,7 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MemoListViewModel: ViewModelType {
+class MemoListViewModel: MemoViewModelType {
     var memos: Observable<[Memo]> {
         return storage.getAllMemo()
     }

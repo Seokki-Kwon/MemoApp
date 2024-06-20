@@ -8,7 +8,14 @@
 import Foundation
 
 // ViewModel이 상속하는 클래스
-class ViewModelType {
+protocol ViewModelType {
+    associatedtype Input
+    associatedtype Output
+    
+    func transform(input: Input) -> Output
+}
+
+class MemoViewModelType {
     let storage: MemoStorageType
     
     init(storage: MemoStorageType) {

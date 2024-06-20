@@ -9,24 +9,47 @@ import Foundation
 import RxSwift
 import RxCocoa
 
-class MemoComposeViewModel: ViewModelType {
-    var memoComposeSbuject = BehaviorRelay<Memo>(value: Memo(title: "", content: ""))
-    var currentMemo: Memo {
-        memoComposeSbuject.value
-    }
+// Input -> title, content, saveButtonTap
+// Output -> saveMemo, dismiss
+class MemoComposeViewModel: MemoViewModelType, ViewModelType {
+    let bag = DisposeBag()
+    private let memoSubject = BehaviorRelay(value: Memo(title: "", content: ""))
+    private let dismissVCSubject = PublishSubject<Void>()
     override init(storage: MemoStorageType) {
         super.init(storage: storage)
     }
     
-    func updateTitle(title: String) {
-        memoComposeSbuject.accept(Memo(id: currentMemo.id, title: title, content: currentMemo.content))
+    struct Input {
+        let inputTitle: Observable<String>
+        let inputContent: Observable<String>
+        let saveButtonTap: ControlEvent<Void>
     }
     
-    func updateContent(content: String) {
-        memoComposeSbuject.accept(Memo(id: currentMemo.id, title: currentMemo.title, content: content))
+    struct Output {
+        let validate: Driver<Bool>
+        let dismissView: Observable<Void>
     }
     
-    func performUpdate() {
-        storage.updateMemo(memo: memoComposeSbuject.value)
+    func transform(input: Input) -> Output {
+        let validate = Observable.combineLatest(input.inputTitle, input.inputContent)
+            .do(onNext: { [weak self] (title, content) in
+                self?.memoSubject.accept(Memo(title: title, content: content))
+            })
+            .map { !$0.0.isEmpty && !$0.1.isEmpty}
+            
+        input.saveButtonTap
+            .withUnretained(self)
+            .subscribe(onNext: { (vc, _) in
+                vc.storage.updateMemo(memo: vc.memoSubject.value)
+                .subscribe(onDisposed:  {
+                    vc.dismissVCSubject.onCompleted()
+                })
+                .dispose()
+        })
+        .disposed(by: bag)
+        
+        return Output(validate: validate.asDriver(onErrorJustReturn: false), dismissView: dismissVCSubject)
     }
+    
+   
 }
