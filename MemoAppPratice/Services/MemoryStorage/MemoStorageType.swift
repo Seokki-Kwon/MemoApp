@@ -14,5 +14,5 @@ protocol MemoStorageType {
     @discardableResult
     func deleteMemo(memo: Memo) -> Observable<Void>
     @discardableResult
-    func getAllMemo() -> Observable<[Memo]>
+    func fetchMemos() -> Observable<[Memo]>
 }

@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard var memoListVC = nav.viewControllers.first as? MemoListViewController else {
             fatalError()
         }
-        let viewModel = MemoListViewModel(storage: MemoStorage())
+        let viewModel = MemoListViewModel(storage: CoreDataStorage(modelName: "MemoApp"))
         memoListVC.bind(viewModel: viewModel)
         
         window?.rootViewController = nav
