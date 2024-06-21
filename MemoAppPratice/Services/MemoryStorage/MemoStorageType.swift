@@ -10,6 +10,8 @@ import RxSwift
 
 protocol MemoStorageType {
     @discardableResult
+    func createMemo(memo: Memo) -> Observable<Memo>
+    @discardableResult
     func updateMemo(memo: Memo) -> Observable<Memo>
     @discardableResult
     func deleteMemo(memo: Memo) -> Observable<Void>

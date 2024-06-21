@@ -11,6 +11,8 @@ import RxCocoa
 import CoreData
 
 final class CoreDataStorage: MemoStorageType {
+    
+    
     let modelName: String
     private let store = BehaviorSubject<[Memo]>(value: [])
     
@@ -34,9 +36,9 @@ final class CoreDataStorage: MemoStorageType {
         return persistentContainer.viewContext
     }
     
-    /// 메모 추가 Upsert
+    /// 메모 추가
     @discardableResult
-    func updateMemo(memo: Memo) -> RxSwift.Observable<Memo> {
+    func createMemo(memo: Memo) -> RxSwift.Observable<Memo> {
         guard let entity = NSEntityDescription.entity(forEntityName: "Memo", in: mainContext) else {
             return Observable.empty()
         }
@@ -56,10 +58,43 @@ final class CoreDataStorage: MemoStorageType {
         }
     }
     
+    /// 메모 업데이트(제목, 내용)
+    @discardableResult
+    func updateMemo(memo: Memo) -> RxSwift.Observable<Memo> {
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Memo")
+        fetchRequest.predicate = NSPredicate(format: "id == %@", memo.id as CVarArg)
+        
+        do {
+            if let fetchRequest = try mainContext.fetch(fetchRequest) as? [NSManagedObject],
+               let memoObject = fetchRequest.first {                
+                memoObject.setValue(memo.id, forKey: "id")
+                memoObject.setValue(memo.title, forKey: "title")
+                memoObject.setValue(memo.content, forKey: "content")
+                
+                do {
+                    _ = try mainContext.save()
+                    let updated = try store.value().map { $0.id == memo.id ? memo : $0 }
+                    store.onNext(updated)
+                } catch {
+                    return Observable.error(error)
+                }
+                
+            } else {
+                return createMemo(memo: memo)
+            }
+            
+            return Observable.just(memo)
+        } catch {
+            return Observable.error(error)
+        }
+    }
+    
     /// 메모 삭제
     @discardableResult
     func deleteMemo(memo: Memo) -> RxSwift.Observable<Void> {
-       let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Memo")
+        // NSFetchRequest CoreData에서 검색을 하기위함
+        // NSPredicate NSArray를 필터링
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Memo")
         fetchRequest.predicate = NSPredicate(format: "id == %@", memo.id as CVarArg)
         
         do {

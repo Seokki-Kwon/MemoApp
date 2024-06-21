@@ -11,6 +11,10 @@ import RxCocoa
 
 // 메모데이터 관련
 final class MemoStorage: MemoStorageType {
+    func createMemo(memo: Memo) -> RxSwift.Observable<Memo> {
+        return Observable.empty()
+    }
+    
     private var memoList: [Memo] = []
     
     private lazy var store = BehaviorRelay(value: memoList)
