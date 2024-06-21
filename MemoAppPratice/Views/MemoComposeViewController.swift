@@ -28,13 +28,14 @@ class MemoComposeViewController: UIViewController, BindableType {
         
     func bindViewModel() {
         let input = MemoComposeViewModel.Input(
-            inputTitle: titleTextField.rx.text.orEmpty, 
+            inputTitle: titleTextField.rx.text.orEmpty,
             inputContent: contentTextField.rx.text.orEmpty,
             saveButtonTap: saveButton.rx.tap)
                 
         let output = viewModel.transform(input: input)
         
-        output.validate.drive(saveButton.rx.isEnabled)
+        output.validate
+            .drive(saveButton.rx.isEnabled)
             .disposed(by: bag)
         
         output.dismissView.subscribe(onCompleted:  {

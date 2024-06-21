@@ -9,7 +9,7 @@ import UIKit
 import RxSwift
 import RxCocoa
 
-class MemoListViewController: UIViewController, BindableType {
+final class MemoListViewController: UIViewController, BindableType {
     var viewModel: MemoListViewModel!
     private let bag = DisposeBag()
     @IBOutlet weak var tableView: UITableView!
@@ -21,36 +21,48 @@ class MemoListViewController: UIViewController, BindableType {
     }
     
     func bindViewModel() {
-        viewModel.memos
-            .bind(to: tableView.rx.items(cellIdentifier: MemoTableViewCell.reuseIdentifier, cellType: MemoTableViewCell.self)) {row, memo, cell in
+        let input = MemoListViewModel.Input(
+            addButtonTap: addButton.rx.tap,
+            memoCellSelected: tableView.rx.modelSelected(Memo.self))
+        
+        let output = viewModel.transform(input: input)
+        
+        output.tableViewDriver
+            .drive(tableView.rx.items(cellIdentifier: MemoTableViewCell.reuseIdentifier, cellType: MemoTableViewCell.self)) {row, memo, cell in
                 cell.titleLabel.text = memo.title
-                cell.contentLabel.text = memo.content                
+                cell.contentLabel.text = memo.content
             }
             .disposed(by: bag)
         
-        addButton.rx.tap
-            .withUnretained(self)
-            .subscribe { (vc, _) in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                guard var memoComposeVC = storyboard.instantiateViewController(withIdentifier: "MemoCompose") as? MemoComposeViewController else {
-                    fatalError()
-                }
-                memoComposeVC.bind(viewModel: MemoComposeViewModel(storage: self.viewModel.storage))
-                
-                vc.present(memoComposeVC, animated: true)
-            }
+        output.presentMemoComposeVC
+            .bind(onNext: presentMemoComposeVC)
             .disposed(by: bag)
+
         
-        tableView.rx.modelSelected(Memo.self)
-            .subscribe { memo in
-                let storyboard = UIStoryboard(name: "Main", bundle: nil)                
-                guard var memoDetailVC = storyboard.instantiateViewController(withIdentifier: "MemoDetail") as? MemoDetailViewController else {
-                    fatalError()
-                }
-                memoDetailVC.bind(viewModel: MemoDetailViewModel(memo: memo, storage: self.viewModel.storage))
-                
-                self.navigationController?.pushViewController(memoDetailVC, animated: true)
-            }
+        output.goToMemoDetailVC
+            .subscribe(onNext: {[weak self] memo in
+                self?.goToMemoDetailVC(memo)}
+            )
             .disposed(by: bag)
+    }
+    
+    private func goToMemoDetailVC(_ memo: Memo) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard var memoDetailVC = storyboard.instantiateViewController(withIdentifier: "MemoDetail") as? MemoDetailViewController else {
+            fatalError()
+        }
+        memoDetailVC.bind(viewModel: MemoDetailViewModel(memo: memo, storage: self.viewModel.storage))
+        
+        self.navigationController?.pushViewController(memoDetailVC, animated: true)
+    }
+    
+    private func presentMemoComposeVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard var memoComposeVC = storyboard.instantiateViewController(withIdentifier: "MemoCompose") as? MemoComposeViewController else {
+            fatalError()
+        }
+        memoComposeVC.bind(viewModel: MemoComposeViewModel(storage: self.viewModel.storage))
+        
+        present(memoComposeVC, animated: true)
     }
 }

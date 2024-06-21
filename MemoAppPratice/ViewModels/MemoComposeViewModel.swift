@@ -39,7 +39,8 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
                 self?.memoSubject.accept(Memo(title: title, content: content))
             })
             .map { !$0.0.isEmpty && !$0.1.isEmpty}
-            
+            .asDriver(onErrorJustReturn: false)
+        
         input.saveButtonTap
             .withUnretained(self)
             .subscribe(onNext: { (vc, _) in
@@ -51,7 +52,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         })
         .disposed(by: bag)
         
-        return Output(validate: validate.asDriver(onErrorJustReturn: false), dismissView: dismissVCSubject)
+        return Output(validate: validate, dismissView: dismissVCSubject)
     }
     
    
