@@ -20,6 +20,7 @@ final class MemoDetailViewController: UIViewController, BindableType {
     
     func bindViewModel() {
         let input = MemoDetailViewModel.Input(editButtonTap: editButton.rx.tap,
+                                              deleteButtonTap: deleteButton.rx.tap,
                                               inputTitle: titleTextField.rx.text.orEmpty,
                                               inputContent: contentLabel.rx.text.orEmpty)        
             
@@ -46,7 +47,12 @@ final class MemoDetailViewController: UIViewController, BindableType {
         output.editModeChanged
             .drive(titleTextField.rx.isEnabled)
             .disposed(by: bag)
-        
+     
+        output.deletedMemo
+            .subscribe(onCompleted: { [weak self] in
+                self?.navigationController?.popViewController(animated: true)
+            })
+            .disposed(by: bag)
     }
     
     override func viewDidLoad() {

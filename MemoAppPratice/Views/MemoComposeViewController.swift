@@ -38,8 +38,9 @@ class MemoComposeViewController: UIViewController, BindableType {
             .drive(saveButton.rx.isEnabled)
             .disposed(by: bag)
         
-        output.dismissView.subscribe(onCompleted:  {
-            self.dismiss(animated: true)
+        output.dismissView  
+            .subscribe(onCompleted: { [weak self] in
+            self?.dismiss(animated: true)
         })
         .disposed(by: bag)
     }

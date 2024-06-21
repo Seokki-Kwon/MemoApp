@@ -17,6 +17,7 @@ final class MemoDetailViewModel: MemoViewModelType {
     let memo: Memo
     private let bag = DisposeBag()
     private let editModeChangeSubject = PublishSubject<Bool>()
+    private let deletedMemoSubject = PublishSubject<Void>()
     private lazy var titleSubject = BehaviorSubject(value: memo.title)
     private lazy var contentSubject = BehaviorSubject(value: memo.content)
     
@@ -30,6 +31,7 @@ extension MemoDetailViewModel: ViewModelType {
     // input
     struct Input {
         let editButtonTap: ControlEvent<Void>
+        let deleteButtonTap: ControlEvent<Void>
         let inputTitle: ControlProperty<String>
         let inputContent: ControlProperty<String>
     }
@@ -38,7 +40,8 @@ extension MemoDetailViewModel: ViewModelType {
     struct Output {
         let editModeChanged: Driver<Bool>
         let outputTitle: Driver<String>
-        let outputContent: Driver<String>
+        let outputContent: Driver<String>        
+        let deletedMemo: Observable<Void>
     }
     
     func transform(input: Input) -> Output {
@@ -47,7 +50,14 @@ extension MemoDetailViewModel: ViewModelType {
             .bind(to: editModeChangeSubject)
             .disposed(by: bag)
         
-        // inputTitle, inputContent를 memoSubject값에 바인딩 해야한다.
+        input.deleteButtonTap
+            .subscribe( onNext: { [weak self] in
+                self?.performDelete()
+                    .bind(to: self!.deletedMemoSubject)
+                    .dispose()
+            })
+            .disposed(by: bag)
+        
         input.inputTitle
             .changed
             .bind(to: titleSubject)
@@ -65,15 +75,20 @@ extension MemoDetailViewModel: ViewModelType {
         
         return Output(editModeChanged: editModeChangeSubject.asDriver(onErrorJustReturn: false),
                       outputTitle: titleSubject.asDriver(onErrorJustReturn: "Some Title"),
-                      outputContent: contentSubject.asDriver(onErrorJustReturn: "Some Contents")
+                      outputContent: contentSubject.asDriver(onErrorJustReturn: "Some Contents"),
+                      deletedMemo: deletedMemoSubject
         )
     }
     
-    func performUpdate() {        
+    private func performUpdate() {
         Observable.zip(titleSubject, contentSubject)
             .map { [weak self] in
                  Memo(id: self!.memo.id, title: $0.0, content: $0.1)}
             .subscribe { self.storage.updateMemo(memo: $0) }
             .disposed(by: bag)
+    }
+    
+    private func performDelete() -> Observable<Void> {
+      return storage.deleteMemo(memo: memo)
     }
 }
