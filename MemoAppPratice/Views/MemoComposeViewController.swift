@@ -43,5 +43,27 @@ class MemoComposeViewController: UIViewController, BindableType {
             self?.dismiss(animated: true)
         })
         .disposed(by: bag)
+        
+        // Cocoa touch에서는 키보드 노티피케이션을 등록하고 해제해야함
+        
+        // keyboard가 나타날때 next이벤트 전달
+       let willShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+            .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue }
+            .map { $0.cgRectValue.height }
+        
+        let willHideObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillHideNotification)
+            .map { noti -> CGFloat in 0 }
+        
+        let keyboardObservable = Observable.merge(willShowObservable, willHideObservable)
+            .share()
+       
+        keyboardObservable
+            .subscribe { [weak self] height in
+                guard let  self = self else {
+                    return
+                }
+                self.saveButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -(height - 20)).isActive = true
+            }
+            .disposed(by: bag)
     }
 }
