@@ -14,7 +14,7 @@ class MemoComposeViewController: UIViewController, BindableType {
     let bag = DisposeBag()
 
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var contentTextField: UITextView!
+    @IBOutlet weak var contentTextField: UITextView!    
     @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {

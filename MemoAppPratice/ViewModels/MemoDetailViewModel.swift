@@ -15,6 +15,7 @@ import RxCocoa
 // editButtonTap -> editModeChanged
 final class MemoDetailViewModel: MemoViewModelType {
     let memo: Memo
+    
     private let bag = DisposeBag()
     private let editModeChangeSubject = PublishSubject<Bool>()
     private let deletedMemoSubject = PublishSubject<Void>()

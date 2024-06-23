@@ -15,7 +15,7 @@ final class MemoDetailViewController: UIViewController, BindableType {
     
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentLabel: UITextView!
-    @IBOutlet weak var editButton: UIButton!
+    @IBOutlet weak var editButton: UIButton!    
     @IBOutlet weak var deleteButton: UIButton!
     
     func bindViewModel() {
