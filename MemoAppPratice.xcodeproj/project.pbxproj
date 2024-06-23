@@ -30,6 +30,7 @@
 		82C88EA62C1F552800109913 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA52C1F552800109913 /* ViewModelType.swift */; };
 		82C88EA82C1F580800109913 /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA72C1F580800109913 /* MemoListViewController.swift */; };
 		82C88EAA2C1F586A00109913 /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA92C1F586A00109913 /* BindableType.swift */; };
+		82FC07CE2C288018002E5C82 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FC07CD2C288018002E5C82 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		82C88EA52C1F552800109913 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		82C88EA72C1F580800109913 /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		82C88EA92C1F586A00109913 /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
+		82FC07CD2C288018002E5C82 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +141,7 @@
 				82C88EA72C1F580800109913 /* MemoListViewController.swift */,
 				8213A0B12C213B0000AAEEAC /* MemoDetailViewController.swift */,
 				8213A0B32C2165CA00AAEEAC /* MemoComposeViewController.swift */,
+				82FC07CD2C288018002E5C82 /* SettingViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -266,6 +269,7 @@
 				82C88E9C2C1F4D6800109913 /* MemoTableViewCell.swift in Sources */,
 				829607162C25AF6600068559 /* MemoApp.xcdatamodeld in Sources */,
 				82C88EAA2C1F586A00109913 /* BindableType.swift in Sources */,
+				82FC07CE2C288018002E5C82 /* SettingViewController.swift in Sources */,
 				82C88EA62C1F552800109913 /* ViewModelType.swift in Sources */,
 				8213A0B42C2165CA00AAEEAC /* MemoComposeViewController.swift in Sources */,
 			);

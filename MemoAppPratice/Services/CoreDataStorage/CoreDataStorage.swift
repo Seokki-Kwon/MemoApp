@@ -47,6 +47,7 @@ final class CoreDataStorage: MemoStorageType {
         memoObject.setValue(memo.id, forKey: "id")
         memoObject.setValue(memo.title, forKey: "title")
         memoObject.setValue(memo.content, forKey: "content")
+        memoObject.setValue(memo.date, forKey: "date")
         
         do {
             _ = try mainContext.save()
@@ -70,6 +71,7 @@ final class CoreDataStorage: MemoStorageType {
                 memoObject.setValue(memo.id, forKey: "id")
                 memoObject.setValue(memo.title, forKey: "title")
                 memoObject.setValue(memo.content, forKey: "content")
+                memoObject.setValue(memo.date, forKey: "date")
                 
                 do {
                     _ = try mainContext.save()

@@ -12,4 +12,5 @@ struct Memo {
     var id: String = UUID().uuidString
     var title: String
     var content: String   
+    let date = Date()
 }

@@ -14,6 +14,7 @@ final class MemoListViewController: UIViewController, BindableType {
     private let bag = DisposeBag()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var settingButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         tableView.rowHeight = 180
@@ -31,6 +32,7 @@ final class MemoListViewController: UIViewController, BindableType {
             .drive(tableView.rx.items(cellIdentifier: MemoTableViewCell.reuseIdentifier, cellType: MemoTableViewCell.self)) {row, memo, cell in
                 cell.titleLabel.text = memo.title
                 cell.contentLabel.text = memo.content
+                cell.dateLabel.text = memo.date.toDateString
             }
             .disposed(by: bag)
         
@@ -43,6 +45,12 @@ final class MemoListViewController: UIViewController, BindableType {
             .subscribe(onNext: {[weak self] memo in
                 self?.goToMemoDetailVC(memo)}
             )
+            .disposed(by: bag)
+        
+        settingButton.rx.tap
+            .subscribe(onNext: {[weak self] _ in
+                self?.goToSettingVC()
+            })
             .disposed(by: bag)
     }
     
@@ -64,5 +72,14 @@ final class MemoListViewController: UIViewController, BindableType {
         memoComposeVC.bind(viewModel: MemoComposeViewModel(storage: self.viewModel.storage))
         
         present(memoComposeVC, animated: true)
+    }
+    
+    private func goToSettingVC() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let settingVC = storyboard.instantiateViewController(withIdentifier: "Setting") as? SettingViewController else {
+            fatalError()
+        }
+        
+        self.navigationController?.pushViewController(settingVC, animated: true)
     }
 }

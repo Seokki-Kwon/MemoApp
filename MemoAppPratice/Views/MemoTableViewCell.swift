@@ -13,10 +13,11 @@ class MemoTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var memoView: UIView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        memoView.layer.borderColor = UIColor.lightGray.cgColor
+        memoView.layer.borderColor = UIColor.systemGray5.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

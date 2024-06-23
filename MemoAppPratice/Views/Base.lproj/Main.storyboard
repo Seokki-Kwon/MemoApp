@@ -92,7 +92,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="EK9-Yz-8UT">
-                                <rect key="frame" x="0.0" y="103" width="393" height="715"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="184" id="fFF-JY-lad" customClass="MemoTableViewCell" customModule="MemoAppPratice" customModuleProvider="target">
@@ -117,12 +117,20 @@
                                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="yyyy.mm.dd" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oNM-ic-TG3">
+                                                            <rect key="frame" x="10" y="137.66666666666666" width="68" height="14.333333333333343"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                            <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
                                                     </subviews>
                                                     <constraints>
                                                         <constraint firstItem="n5b-Bm-TJt" firstAttribute="leading" secondItem="Qag-So-Kcu" secondAttribute="leading" constant="10" id="6dF-hD-ALc"/>
+                                                        <constraint firstAttribute="bottom" secondItem="oNM-ic-TG3" secondAttribute="bottom" constant="10" id="HeI-D8-I6t"/>
                                                         <constraint firstItem="n5b-Bm-TJt" firstAttribute="top" secondItem="Qgg-Ho-rNW" secondAttribute="bottom" constant="10" id="TjQ-AE-TGT"/>
                                                         <constraint firstItem="Qgg-Ho-rNW" firstAttribute="leading" secondItem="Qag-So-Kcu" secondAttribute="leading" constant="10" id="d1p-G9-rwJ"/>
                                                         <constraint firstItem="Qgg-Ho-rNW" firstAttribute="top" secondItem="Qag-So-Kcu" secondAttribute="top" constant="10" id="oUy-bA-ERJ"/>
+                                                        <constraint firstItem="oNM-ic-TG3" firstAttribute="leading" secondItem="Qag-So-Kcu" secondAttribute="leading" constant="10" id="qcu-OX-aag"/>
                                                     </constraints>
                                                     <userDefinedRuntimeAttributes>
                                                         <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -144,6 +152,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="contentLabel" destination="n5b-Bm-TJt" id="6Tk-OV-nee"/>
+                                            <outlet property="dateLabel" destination="oNM-ic-TG3" id="Fo5-9a-Yb4"/>
                                             <outlet property="memoView" destination="Qag-So-Kcu" id="YlO-cx-nPj"/>
                                             <outlet property="titleLabel" destination="Qgg-Ho-rNW" id="WrC-3v-xYp"/>
                                         </connections>
@@ -175,7 +184,7 @@
                             <constraint firstItem="Qex-wY-PtA" firstAttribute="trailing" secondItem="EK9-Yz-8UT" secondAttribute="trailing" id="9Ox-mz-uMh"/>
                             <constraint firstItem="EK9-Yz-8UT" firstAttribute="leading" secondItem="Qex-wY-PtA" secondAttribute="leading" id="Q8C-Ut-dOb"/>
                             <constraint firstAttribute="trailing" secondItem="XsV-lT-twA" secondAttribute="trailing" constant="15" id="R9s-kx-bXU"/>
-                            <constraint firstItem="Qex-wY-PtA" firstAttribute="bottom" secondItem="EK9-Yz-8UT" secondAttribute="bottom" id="S2I-I3-s6x"/>
+                            <constraint firstAttribute="bottom" secondItem="EK9-Yz-8UT" secondAttribute="bottom" id="S2I-I3-s6x"/>
                             <constraint firstItem="EK9-Yz-8UT" firstAttribute="top" secondItem="Qex-wY-PtA" secondAttribute="top" id="qZW-Yf-fLo"/>
                         </constraints>
                     </view>
@@ -187,6 +196,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="XsV-lT-twA" id="abT-CL-glm"/>
+                        <outlet property="settingButton" destination="u1k-dN-OwM" id="SA8-yy-Iib"/>
                         <outlet property="tableView" destination="EK9-Yz-8UT" id="tpf-0Q-QmG"/>
                     </connections>
                 </viewController>
@@ -355,6 +365,21 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Drx-F7-YQg" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3796" y="1426"/>
+        </scene>
+        <!--Setting View Controller-->
+        <scene sceneID="R5e-d4-5an">
+            <objects>
+                <viewController storyboardIdentifier="Setting" id="0k6-ea-WGK" customClass="SettingViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Bfj-Lp-b03">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="8Rs-T5-pTj"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Bsa-74-zbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3840" y="2290"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Z43-a4-Gw5">

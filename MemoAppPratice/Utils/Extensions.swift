@@ -16,3 +16,12 @@ extension UITextField {
         layer.addSublayer(bottomLine)
     }
 }
+
+extension Date {
+    var toDateString: String? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM.dd"
+        let dateString = formatter.string(from: self)
+        return dateString
+    }
+}
