@@ -14,7 +14,7 @@ final class MemoListViewController: UIViewController, BindableType {
     private let bag = DisposeBag()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var settingButton: UIBarButtonItem!
+
     
     override func viewDidLoad() {
         tableView.rowHeight = 180
@@ -47,11 +47,6 @@ final class MemoListViewController: UIViewController, BindableType {
             )
             .disposed(by: bag)
         
-        settingButton.rx.tap
-            .subscribe(onNext: {[weak self] _ in
-                self?.goToSettingVC()
-            })
-            .disposed(by: bag)
     }
     
     private func goToMemoDetailVC(_ memo: Memo) {

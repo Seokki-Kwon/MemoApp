@@ -19,11 +19,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let nav = storyboard.instantiateViewController(identifier: "MainNav") as? UINavigationController else {
             fatalError()
         }
-        guard var memoListVC = nav.viewControllers.first as? MemoListViewController else {
+        guard var mainPageVC = nav.viewControllers.first as? MainPageViewController else {
             fatalError()
         }
-        let viewModel = MemoListViewModel(storage: CoreDataStorage(modelName: "MemoApp"))
-        memoListVC.bind(viewModel: viewModel)
+        mainPageVC.bind(viewModel: MainPageViewModel())
+//        let viewModel = MemoListViewModel(storage: CoreDataStorage(modelName: "MemoApp"))
+//        memoListVC.bind(viewModel: viewModel)
         
         window?.rootViewController = nav
     }

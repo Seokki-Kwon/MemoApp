@@ -22,7 +22,6 @@ final class MemoListViewModel: MemoViewModelType, ViewModelType {
     
     struct Input {
         let addButtonTap: ControlEvent<Void>
-        
         let memoCellSelected: ControlEvent<Memo>
     }
     struct Output {
