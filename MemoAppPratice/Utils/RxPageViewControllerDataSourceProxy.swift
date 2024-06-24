@@ -32,7 +32,7 @@ extension RxPageViewControllerDataSourceProxy: UIPageViewControllerDataSource {
         return UIViewController()
     }
     
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {        
         return UIViewController()
     }
 }

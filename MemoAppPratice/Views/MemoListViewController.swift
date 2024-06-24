@@ -17,7 +17,7 @@ final class MemoListViewController: UIViewController, BindableType {
 
     
     override func viewDidLoad() {
-        tableView.rowHeight = 180
+        tableView.rowHeight = 150
         super.viewDidLoad()
     }
     

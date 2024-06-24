@@ -12,12 +12,14 @@ import RxCocoa
 final class MainPageViewModel: ViewModelType {
     struct Input {
         let settingButtonTap: ControlEvent<Void>
+        let segmentSeleted: ControlProperty<Int>
     }
     struct Output {
         let goToSettingVC: Observable<Void>
+        let movePage: Driver<Int>
     }
     
     func transform(input: Input) -> Output {
-        return Output(goToSettingVC: input.settingButtonTap.asObservable())
+        return Output(goToSettingVC: input.settingButtonTap.asObservable(),movePage: input.segmentSeleted.asDriver())
     }
 }

@@ -86,16 +86,13 @@
         <!--메모 목록-->
         <scene sceneID="XzG-FS-4Zm">
             <objects>
-                <viewController id="aDn-KU-aL0" customClass="MainContainerViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aDn-KU-aL0" customClass="MainViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hCJ-Xd-hPQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZoF-Wy-0c7">
                                 <rect key="frame" x="0.0" y="154" width="393" height="698"/>
-                                <connections>
-                                    <segue destination="v7B-fQ-wwE" kind="embed" id="FqX-OY-sI9"/>
-                                </connections>
                             </containerView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L5h-LA-f2l">
                                 <rect key="frame" x="131" y="113" width="131" height="32"/>
@@ -120,8 +117,16 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="메모 목록" id="YnW-vh-8rC">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="uQS-rx-zyK"/>
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="uQS-rx-zyK">
+                            <imageReference key="image" image="gearshape" catalog="system" symbolScale="medium"/>
+                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <outlet property="containerView" destination="ZoF-Wy-0c7" id="LKm-uA-PyV"/>
+                        <outlet property="segmentedControl" destination="L5h-LA-f2l" id="U8A-WA-H1B"/>
+                        <outlet property="settingButton" destination="uQS-rx-zyK" id="Amz-lG-8ph"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wD-ZC-oOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -245,7 +250,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dwp-zp-FgF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3762.5954198473282" y="-2.1126760563380285"/>
+            <point key="canvasLocation" x="5613" y="674"/>
         </scene>
         <!--Calender View Controller-->
         <scene sceneID="O2g-2w-mgl">
@@ -272,7 +277,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ud-nl-7Zh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4783" y="42"/>
+            <point key="canvasLocation" x="6753" y="674"/>
         </scene>
         <!--Memo Detail View Controller-->
         <scene sceneID="euE-Hu-B12">
@@ -449,7 +454,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Bsa-74-zbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3840" y="2290"/>
+            <point key="canvasLocation" x="3837" y="2145"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="UyQ-eN-Bz6">
@@ -474,7 +479,7 @@
             <objects>
                 <viewController storyboardIdentifier="MainPage" id="v7B-fQ-wwE" customClass="MainPageViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xZR-Yx-CkZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="698"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="Ok8-yf-Kdp"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -482,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7bj-2O-O3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5747" y="-2"/>
+            <point key="canvasLocation" x="6044" y="-2"/>
         </scene>
     </scenes>
     <resources>
