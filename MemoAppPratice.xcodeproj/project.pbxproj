@@ -15,6 +15,7 @@
 		8285B5692C2949BE00180AF4 /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285B5682C2949BE00180AF4 /* MainPageViewController.swift */; };
 		8285B56B2C294A1600180AF4 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285B56A2C294A1600180AF4 /* CalenderViewController.swift */; };
 		8285B56D2C2953D400180AF4 /* MainPageViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285B56C2C2953D400180AF4 /* MainPageViewModel.swift */; };
+		8285B5722C296B1D00180AF4 /* RxPageViewControllerDataSourceProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285B5712C296B1D00180AF4 /* RxPageViewControllerDataSourceProxy.swift */; };
 		829607162C25AF6600068559 /* MemoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 829607142C25AF6600068559 /* MemoApp.xcdatamodeld */; };
 		8296071C2C25BEBD00068559 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296071B2C25BEBD00068559 /* CoreDataStorage.swift */; };
 		82C88E7F2C1F4A7E00109913 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88E7E2C1F4A7E00109913 /* AppDelegate.swift */; };
@@ -33,6 +34,7 @@
 		82C88EA62C1F552800109913 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA52C1F552800109913 /* ViewModelType.swift */; };
 		82C88EA82C1F580800109913 /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA72C1F580800109913 /* MemoListViewController.swift */; };
 		82C88EAA2C1F586A00109913 /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA92C1F586A00109913 /* BindableType.swift */; };
+		82FA79FE2C29A48200E15D91 /* MainContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FA79FD2C29A48200E15D91 /* MainContainerViewController.swift */; };
 		82FC07CE2C288018002E5C82 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FC07CD2C288018002E5C82 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +47,7 @@
 		8285B5682C2949BE00180AF4 /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		8285B56A2C294A1600180AF4 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		8285B56C2C2953D400180AF4 /* MainPageViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewModel.swift; sourceTree = "<group>"; };
+		8285B5712C296B1D00180AF4 /* RxPageViewControllerDataSourceProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxPageViewControllerDataSourceProxy.swift; sourceTree = "<group>"; };
 		829607152C25AF6600068559 /* MemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoModel.xcdatamodel; sourceTree = "<group>"; };
 		8296071B2C25BEBD00068559 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		82C88E7B2C1F4A7E00109913 /* MemoAppPratice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoAppPratice.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -63,6 +66,7 @@
 		82C88EA52C1F552800109913 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		82C88EA72C1F580800109913 /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		82C88EA92C1F586A00109913 /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
+		82FA79FD2C29A48200E15D91 /* MainContainerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainContainerViewController.swift; sourceTree = "<group>"; };
 		82FC07CD2C288018002E5C82 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -83,6 +87,7 @@
 			isa = PBXGroup;
 			children = (
 				8213A0B82C2179D100AAEEAC /* Extensions.swift */,
+				8285B5712C296B1D00180AF4 /* RxPageViewControllerDataSourceProxy.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -150,6 +155,7 @@
 				82FC07CD2C288018002E5C82 /* SettingViewController.swift */,
 				8285B5682C2949BE00180AF4 /* MainPageViewController.swift */,
 				8285B56A2C294A1600180AF4 /* CalenderViewController.swift */,
+				82FA79FD2C29A48200E15D91 /* MainContainerViewController.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -263,6 +269,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8285B5692C2949BE00180AF4 /* MainPageViewController.swift in Sources */,
+				82FA79FE2C29A48200E15D91 /* MainContainerViewController.swift in Sources */,
 				82C88EA42C1F551400109913 /* MemoListViewModel.swift in Sources */,
 				82C88E832C1F4A7E00109913 /* ViewController.swift in Sources */,
 				82C88EA22C1F532D00109913 /* MemoStorageType.swift in Sources */,
@@ -284,6 +291,7 @@
 				8285B56B2C294A1600180AF4 /* CalenderViewController.swift in Sources */,
 				82C88EA62C1F552800109913 /* ViewModelType.swift in Sources */,
 				8213A0B42C2165CA00AAEEAC /* MemoComposeViewController.swift in Sources */,
+				8285B5722C296B1D00180AF4 /* RxPageViewControllerDataSourceProxy.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,6 +446,7 @@
 				DEVELOPMENT_TEAM = P4D4ZQC4YF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemoAppPratice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Memo Reminder";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -467,6 +476,7 @@
 				DEVELOPMENT_TEAM = P4D4ZQC4YF;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemoAppPratice/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Memo Reminder";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

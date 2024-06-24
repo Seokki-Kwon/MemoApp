@@ -9,20 +9,12 @@ import UIKit
 import RxCocoa
 import RxSwift
 
-class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate, UIPageViewControllerDataSource, BindableType {
+class MainPageViewController: UIPageViewController, UIPageViewControllerDataSource, BindableType {
     var viewModel: MainPageViewModel!
     private let bag = DisposeBag()
     
-    @IBOutlet weak var settingButton: UIBarButtonItem!
-    
     func bindViewModel() {
-        let input = MainPageViewModel.Input(settingButtonTap: settingButton.rx.tap)
-        
-        let output = viewModel.transform(input: input)
-        
-        output.goToSettingVC
-            .bind(onNext: goToSettingVC)
-            .disposed(by: bag)
+            
     }
     
     func presentationCount(for pageViewController: UIPageViewController) -> Int {
@@ -48,7 +40,8 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     private lazy var subViewControllers: [UIViewController] = {
         // binding
         var memoListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoList") as! MemoListViewController
-        let viewModel = MemoListViewModel(storage: CoreDataStorage(modelName: "MemoApp"))
+        let storage = CoreDataStorage(modelName: "MemoApp")
+        let viewModel = MemoListViewModel(storage: storage)
         memoListVC.bind(viewModel: viewModel)
         return [
             memoListVC,
@@ -58,9 +51,14 @@ class MainPageViewController: UIPageViewController, UIPageViewControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.delegate = self
         self.dataSource = self
         setViewControllers([subViewControllers[0]], direction: .forward, animated: true)
+        
+        view.backgroundColor = .systemBackground
+    }
+    
+    required init?(coder: NSCoder) {
+        super.init(transitionStyle: .scroll, navigationOrientation: .horizontal)
     }
     
     func goToSettingVC() {

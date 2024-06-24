@@ -84,22 +84,48 @@
             <point key="canvasLocation" x="1066.4122137404579" y="-2.1126760563380285"/>
         </scene>
         <!--메모 목록-->
-        <scene sceneID="Mo2-s8-Z9x">
+        <scene sceneID="XzG-FS-4Zm">
             <objects>
-                <pageViewController autoresizesArchivedViewToFullSize="NO" transitionStyle="scroll" navigationOrientation="horizontal" spineLocation="none" id="o9T-S4-mPC" customClass="MainPageViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" title="메모 목록" id="hGa-wG-DVO">
-                        <barButtonItem key="rightBarButtonItem" title="Item" id="xKm-Qc-muG">
-                            <imageReference key="image" image="gearshape" catalog="system" symbolScale="medium"/>
-                            <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </barButtonItem>
+                <viewController id="aDn-KU-aL0" customClass="MainContainerViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hCJ-Xd-hPQ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZoF-Wy-0c7">
+                                <rect key="frame" x="0.0" y="154" width="393" height="698"/>
+                                <connections>
+                                    <segue destination="v7B-fQ-wwE" kind="embed" id="FqX-OY-sI9"/>
+                                </connections>
+                            </containerView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L5h-LA-f2l">
+                                <rect key="frame" x="131" y="113" width="131" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="131" id="qzL-W6-L6D"/>
+                                </constraints>
+                                <segments>
+                                    <segment title="메모"/>
+                                    <segment title="캘린더"/>
+                                </segments>
+                            </segmentedControl>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="w4e-zA-auA"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="ZoF-Wy-0c7" firstAttribute="top" secondItem="L5h-LA-f2l" secondAttribute="bottom" constant="10" id="2dg-XY-E9m"/>
+                            <constraint firstItem="L5h-LA-f2l" firstAttribute="centerX" secondItem="hCJ-Xd-hPQ" secondAttribute="centerX" id="93C-U6-zXf"/>
+                            <constraint firstItem="w4e-zA-auA" firstAttribute="trailing" secondItem="ZoF-Wy-0c7" secondAttribute="trailing" id="B2V-Sq-710"/>
+                            <constraint firstItem="ZoF-Wy-0c7" firstAttribute="leading" secondItem="w4e-zA-auA" secondAttribute="leading" id="ITX-pQ-Suc"/>
+                            <constraint firstItem="L5h-LA-f2l" firstAttribute="top" secondItem="w4e-zA-auA" secondAttribute="top" constant="10" id="ivh-Y0-pj1"/>
+                            <constraint firstAttribute="bottom" secondItem="ZoF-Wy-0c7" secondAttribute="bottom" id="lTt-sb-X6h"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="메모 목록" id="YnW-vh-8rC">
+                        <barButtonItem key="rightBarButtonItem" title="Item" id="uQS-rx-zyK"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="settingButton" destination="xKm-Qc-muG" id="qeM-W3-ABd"/>
-                    </connections>
-                </pageViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="HMC-Id-LIV" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="6wD-ZC-oOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4721.3740458015263" y="-689.43661971830988"/>
+            <point key="canvasLocation" x="6672.5190839694651" y="-718.30985915492965"/>
         </scene>
         <!--나의 메모-->
         <scene sceneID="ZkA-VN-Ekb">
@@ -228,8 +254,20 @@
                     <view key="view" contentMode="scaleToFill" id="ybG-yY-weK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" showsMenuAsPrimaryAction="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" style="inline" translatesAutoresizingMaskIntoConstraints="NO" id="aVL-je-jsI">
+                                <rect key="frame" x="0.0" y="59" width="393" height="374.66666666666669"/>
+                                <color key="tintColor" systemColor="systemMintColor"/>
+                                <locale key="locale" localeIdentifier="ko_KR"/>
+                            </datePicker>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="iz1-Wc-IUr"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aVL-je-jsI" secondAttribute="trailing" id="bTV-Vh-HuX"/>
+                            <constraint firstItem="aVL-je-jsI" firstAttribute="top" secondItem="iz1-Wc-IUr" secondAttribute="top" id="h0b-Ck-yDT"/>
+                            <constraint firstItem="aVL-je-jsI" firstAttribute="leading" secondItem="ybG-yY-weK" secondAttribute="leading" id="hOP-V6-AKB"/>
+                        </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ud-nl-7Zh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -414,22 +452,37 @@
             <point key="canvasLocation" x="3840" y="2290"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="mLN-Cl-LEn">
+        <scene sceneID="UyQ-eN-Bz6">
             <objects>
-                <navigationController storyboardIdentifier="MainNav" automaticallyAdjustsScrollViewInsets="NO" id="uQk-Fn-8zE" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainNav" automaticallyAdjustsScrollViewInsets="NO" id="Laz-Ff-X9M" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Y33-Mw-nkk">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="f6I-bA-HNH">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="o9T-S4-mPC" kind="relationship" relationship="rootViewController" id="cP3-Dz-crL"/>
+                        <segue destination="aDn-KU-aL0" kind="relationship" relationship="rootViewController" id="xpP-r9-t04"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="J7t-qr-pfF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7sk-X8-B5l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3794.6564885496182" y="-689.43661971830988"/>
+            <point key="canvasLocation" x="5745.801526717557" y="-718.30985915492965"/>
+        </scene>
+        <!--Main Page View Controller-->
+        <scene sceneID="ZlJ-gQ-2RS">
+            <objects>
+                <viewController storyboardIdentifier="MainPage" id="v7B-fQ-wwE" customClass="MainPageViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xZR-Yx-CkZ">
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="698"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="Ok8-yf-Kdp"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="7bj-2O-O3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5747" y="-2"/>
         </scene>
     </scenes>
     <resources>
@@ -446,16 +499,16 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemBlueColor">
-            <color red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemYellowColor">
             <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
