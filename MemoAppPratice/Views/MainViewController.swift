@@ -12,8 +12,10 @@ import RxSwift
 class MainViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
-    private let bag = DisposeBag()
     @IBOutlet weak var settingButton: UIBarButtonItem!
+    
+    private let bag = DisposeBag()
+
     var viewModel: MainPageViewModel!
     
     private lazy var subViewControllers: [UIViewController] = {
@@ -58,16 +60,17 @@ extension MainViewController: BindableType {
         output.movePage
             .drive(onNext: setPage)
             .disposed(by: bag)
-        
-        pageViewController.rx.didFinishAnimating
-            .subscribe(onNext: {num in
-                    print(num)
-            })
-            .disposed(by: bag)
     }
     
     func setPage(_ index: Int) {
-        pageViewController.setViewControllers([self.subViewControllers[index]], direction: .forward, animated: true)
+        var direction: UIPageViewController.NavigationDirection
+        let willShownViewController = subViewControllers[index]
+        if let _ = willShownViewController as? MemoListViewController {
+            direction = .reverse
+        } else {
+            direction = .forward
+        }
+        pageViewController.setViewControllers([subViewControllers[index]], direction: direction, animated: true)
     }
     
     func goToSettingVC() {
@@ -80,13 +83,4 @@ extension MainViewController: BindableType {
     }
 }
 
-extension Reactive where Base: UIPageViewController {
-    var didFinishAnimating: Observable<Int> {
-        return self.dataSource
-            .methodInvoked(#selector(UIPageViewControllerDelegate.pageViewController(_:didFinishAnimating:previousViewControllers:transitionCompleted:)))
-            .map { parameters in                
-                return 1
-            }
-    }
-}
 
