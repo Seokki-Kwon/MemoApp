@@ -16,21 +16,18 @@ class MemoComposeViewController: UIViewController, BindableType {
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var contentTextField: UITextView!    
     @IBOutlet weak var saveButton: UIButton!
+    @IBOutlet weak var closeButton: UIBarButtonItem!
     
     override func viewDidLoad() {
-        super.viewDidLoad()
-        setupUI()
+        super.viewDidLoad()        
     }
     
-    func setupUI() {
-        titleTextField.addBottomBorder()
-    }
-        
     func bindViewModel() {
         let input = MemoComposeViewModel.Input(
             inputTitle: titleTextField.rx.text.orEmpty,
             inputContent: contentTextField.rx.text.orEmpty,
-            saveButtonTap: saveButton.rx.tap)
+            saveButtonTap: saveButton.rx.tap,
+            closeButtonTap: closeButton.rx.tap)
                 
         let output = viewModel.transform(input: input)
         
@@ -38,8 +35,8 @@ class MemoComposeViewController: UIViewController, BindableType {
             .drive(saveButton.rx.isEnabled)
             .disposed(by: bag)
         
-        output.dismissView  
-            .subscribe(onCompleted: { [weak self] in
+        output.dismissView
+            .subscribe(onNext: { [weak self] in
             self?.dismiss(animated: true)
         })
         .disposed(by: bag)

@@ -17,7 +17,7 @@ final class MemoListViewController: UIViewController, BindableType {
 
     
     override func viewDidLoad() {
-        tableView.rowHeight = 150
+        tableView.rowHeight = 80
         super.viewDidLoad()
     }
     
@@ -30,8 +30,7 @@ final class MemoListViewController: UIViewController, BindableType {
         
         output.tableViewDriver
             .drive(tableView.rx.items(cellIdentifier: MemoTableViewCell.reuseIdentifier, cellType: MemoTableViewCell.self)) {row, memo, cell in
-                cell.titleLabel.text = memo.title
-                cell.contentLabel.text = memo.content
+                cell.titleLabel.text = memo.title                
                 cell.dateLabel.text = memo.date.toDateString
             }
             .disposed(by: bag)
@@ -61,12 +60,15 @@ final class MemoListViewController: UIViewController, BindableType {
     
     private func presentMemoComposeVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard var memoComposeVC = storyboard.instantiateViewController(withIdentifier: "MemoCompose") as? MemoComposeViewController else {
+        guard var composeNav = storyboard.instantiateViewController(withIdentifier: "ComposeNav") as? UINavigationController else {
+            fatalError()
+        }
+        guard var memoComposeVC = composeNav.viewControllers.first as? MemoComposeViewController else {
             fatalError()
         }
         memoComposeVC.bind(viewModel: MemoComposeViewModel(storage: self.viewModel.storage))
         
-        present(memoComposeVC, animated: true)
+        present(composeNav, animated: true)
     }
     
     private func goToSettingVC() {

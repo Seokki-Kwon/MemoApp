@@ -10,14 +10,12 @@ import RxSwift
 
 class MemoTableViewCell: UITableViewCell {
     static let reuseIdentifier = "MemoCell"
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var contentLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!    
     @IBOutlet weak var memoView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        memoView.layer.borderColor = UIColor.systemGray5.cgColor
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

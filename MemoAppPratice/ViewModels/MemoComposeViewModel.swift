@@ -26,6 +26,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let inputTitle: ControlProperty<String>
         let inputContent: ControlProperty<String>
         let saveButtonTap: ControlEvent<Void>
+        let closeButtonTap: ControlEvent<Void>
     }
     
     struct Output {
@@ -41,12 +42,16 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
             .map { !$0.0.isEmpty && !$0.1.isEmpty}
             .asDriver(onErrorJustReturn: false)
         
+        input.closeButtonTap            
+            .bind(to: dismissVCSubject)
+            .disposed(by: bag)
+        
         input.saveButtonTap
             .withUnretained(self)
             .subscribe(onNext: { (vc, _) in
                 vc.storage.updateMemo(memo: vc.memoSubject.value)
                 .subscribe(onDisposed:  {
-                    vc.dismissVCSubject.onCompleted()
+                    vc.dismissVCSubject.onNext(())
                 })
                 .dispose()
         })

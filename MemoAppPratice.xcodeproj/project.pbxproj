@@ -33,6 +33,7 @@
 		82C88EA62C1F552800109913 /* ViewModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA52C1F552800109913 /* ViewModelType.swift */; };
 		82C88EA82C1F580800109913 /* MemoListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA72C1F580800109913 /* MemoListViewController.swift */; };
 		82C88EAA2C1F586A00109913 /* BindableType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88EA92C1F586A00109913 /* BindableType.swift */; };
+		82F4720A2C2B412700EC14C9 /* CustomSegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82F472092C2B412700EC14C9 /* CustomSegmentedControl.swift */; };
 		82FC07CE2C288018002E5C82 /* SettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82FC07CD2C288018002E5C82 /* SettingViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +64,7 @@
 		82C88EA52C1F552800109913 /* ViewModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelType.swift; sourceTree = "<group>"; };
 		82C88EA72C1F580800109913 /* MemoListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MemoListViewController.swift; sourceTree = "<group>"; };
 		82C88EA92C1F586A00109913 /* BindableType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BindableType.swift; sourceTree = "<group>"; };
+		82F472092C2B412700EC14C9 /* CustomSegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSegmentedControl.swift; sourceTree = "<group>"; };
 		82FC07CD2C288018002E5C82 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +126,7 @@
 		82C88E7D2C1F4A7E00109913 /* MemoAppPratice */ = {
 			isa = PBXGroup;
 			children = (
+				82F4720B2C2B42CE00EC14C9 /* UI */,
 				8213A0B72C2179C000AAEEAC /* Utils */,
 				82C88E9A2C1F4B0100109913 /* Services */,
 				82C88E992C1F4AFB00109913 /* Models */,
@@ -182,6 +185,14 @@
 				829607192C25BE3000068559 /* CoreDataStorage */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		82F4720B2C2B42CE00EC14C9 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				82F472092C2B412700EC14C9 /* CustomSegmentedControl.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -271,6 +282,7 @@
 				82C88EA02C1F4E2200109913 /* Memo.swift in Sources */,
 				8213A0B62C21685300AAEEAC /* MemoComposeViewModel.swift in Sources */,
 				82C88EA82C1F580800109913 /* MemoListViewController.swift in Sources */,
+				82F4720A2C2B412700EC14C9 /* CustomSegmentedControl.swift in Sources */,
 				8213A0B22C213B0000AAEEAC /* MemoDetailViewController.swift in Sources */,
 				82C88E812C1F4A7E00109913 /* SceneDelegate.swift in Sources */,
 				8213A0B92C2179D100AAEEAC /* Extensions.swift in Sources */,

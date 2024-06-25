@@ -18,6 +18,10 @@ class MainViewController: UIViewController {
 
     var viewModel: MainPageViewModel!
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()        
+    }
+    
     private lazy var subViewControllers: [UIViewController] = {
         // binding
         var memoListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoList") as! MemoListViewController
