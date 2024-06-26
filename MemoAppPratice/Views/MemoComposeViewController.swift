@@ -18,6 +18,7 @@ class MemoComposeViewController: UIViewController, BindableType {
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var actionSheetButton: UIBarButtonItem!
+    @IBOutlet weak var colorButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -25,7 +26,7 @@ class MemoComposeViewController: UIViewController, BindableType {
     
     func bindViewModel() {
         let actionTypeSubject = PublishSubject<ActionSheetType>()
-            
+        let colorPickerView = UIColorPickerViewController()
         
         let input = MemoComposeViewModel.Input(
             inputTitle: titleTextField.rx.text.orEmpty,
@@ -33,8 +34,8 @@ class MemoComposeViewController: UIViewController, BindableType {
             saveButtonTap: saveButton.rx.tap,
             closeButtonTap: closeButton.rx.tap,
             actionSheetButtonTap: actionSheetButton.rx.tap,
-            selectedActionType: actionTypeSubject.asObservable()
-            )
+            selectedActionType: actionTypeSubject.asObservable(),
+            colorButtonTap: colorButton.rx.tap)
         
         let output = viewModel.transform(input: input)
         
@@ -65,6 +66,12 @@ class MemoComposeViewController: UIViewController, BindableType {
             })
             .disposed(by: bag)
         
+        output.presentColorPicker
+            .bind { [weak self] _ in
+                self?.present(colorPickerView, animated: true)
+            }
+            .disposed(by: bag)
+            
         // Cocoa touch에서는 키보드 노티피케이션을 등록하고 해제해야함
         
         // keyboard가 나타날때 next이벤트 전달

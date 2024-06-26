@@ -40,6 +40,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let closeButtonTap: ControlEvent<Void>        
         let actionSheetButtonTap: ControlEvent<Void>
         let selectedActionType: Observable<ActionSheetType>
+        let colorButtonTap: ControlEvent<Void>
     }
     
     struct Output {
@@ -48,6 +49,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let outputTitle: Driver<String>
         let outputContent: Driver<String>
         let actionButtonTapped: Observable<Void>
+        let presentColorPicker: Observable<Void>
     }
     
     func transform(input: Input) -> Output {        
@@ -80,7 +82,8 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         return Output(validate: validate,
                       editCompleted: trigger,
                       outputTitle: memoTitleSubject.asDriver(onErrorJustReturn: ""),
-                      outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""), actionButtonTapped: input.actionSheetButtonTap.asObservable())
+                      outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""), actionButtonTapped: input.actionSheetButtonTap.asObservable(),
+                      presentColorPicker: input.colorButtonTap.asObservable())
     }
 
     private func performUpdate() {

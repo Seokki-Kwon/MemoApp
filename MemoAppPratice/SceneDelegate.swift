@@ -22,7 +22,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard var mainVC = nav.viewControllers.first as? MainViewController else {
             fatalError()
         }
-        let viewModel = MainPageViewModel()
+        let viewModel = MainViewModel()
         mainVC.bind(viewModel: viewModel)
         
         window?.rootViewController = nav

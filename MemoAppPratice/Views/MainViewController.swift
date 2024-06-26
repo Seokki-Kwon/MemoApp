@@ -13,14 +13,16 @@ class MainViewController: UIViewController {
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var settingButton: UIBarButtonItem!
+    @IBOutlet weak var navTitle: UIBarButtonItem!
     
     @IBOutlet weak var shadowView: UIView!
     private let bag = DisposeBag()
-
-    var viewModel: MainPageViewModel!
+    
+    var viewModel: MainViewModel!
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+        
         shadowView.layer.shadowColor = UIColor.lightGray.cgColor
         shadowView.layer.shadowOpacity = 0.8
         shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
@@ -45,6 +47,19 @@ class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavTitle()
+        setPageViewLayout()
+    }
+    
+    private func setNavTitle() {
+        let font = UIFont.systemFont(ofSize: 18, weight: .bold)
+        let attributes: [NSAttributedString.Key: Any] = [
+            .font: font
+        ]
+        navTitle.setTitleTextAttributes(attributes, for: .normal)
+    }
+    
+    private func setPageViewLayout() {
         // pageViewController Setting
         pageViewController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal)
         addChild(pageViewController)
@@ -60,8 +75,8 @@ extension MainViewController: BindableType {
     
     func bindViewModel() {
         // binding
-        let input = MainPageViewModel.Input(settingButtonTap: settingButton.rx.tap,
-                                            segmentSeleted: segmentedControl.rx.selectedSegmentIndex)
+        let input = MainViewModel.Input(settingButtonTap: settingButton.rx.tap,
+                                        segmentSeleted: segmentedControl.rx.selectedSegmentIndex)
         
         let output = viewModel.transform(input: input)
         
@@ -72,9 +87,15 @@ extension MainViewController: BindableType {
         output.movePage
             .drive(onNext: setPage)
             .disposed(by: bag)
+        
+        output.movePage
+            .map { $0 == 0 ? "👀 다가오는 일정" : "🗓️ 캘린더 보기"}
+            .drive(navTitle.rx.title)
+            .disposed(by: bag)
+        
     }
     
-    func setPage(_ index: Int) {
+    private func setPage(_ index: Int) {
         var direction: UIPageViewController.NavigationDirection
         let willShownViewController = subViewControllers[index]
         if let _ = willShownViewController as? MemoListViewController {
@@ -85,7 +106,7 @@ extension MainViewController: BindableType {
         pageViewController.setViewControllers([subViewControllers[index]], direction: direction, animated: true)
     }
     
-    func goToSettingVC() {
+    private func goToSettingVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let settingVC = storyboard.instantiateViewController(withIdentifier: "Setting") as? SettingViewController else {
             fatalError()
