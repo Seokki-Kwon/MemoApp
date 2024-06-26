@@ -17,6 +17,7 @@ class MemoComposeViewController: UIViewController, BindableType {
     @IBOutlet weak var contentTextField: UITextView!    
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var closeButton: UIBarButtonItem!
+    @IBOutlet weak var rightButton: UIBarButtonItem!
     
     override func viewDidLoad() {
         super.viewDidLoad()        

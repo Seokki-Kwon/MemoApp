@@ -8,6 +8,7 @@
 import Foundation
 import RxSwift
 import RxCocoa
+import UIKit
 
 // Input -> title, content, saveButtonTap
 // Output -> saveMemo, dismiss
@@ -15,6 +16,7 @@ import RxCocoa
 
 class MemoComposeViewModel: MemoViewModelType, ViewModelType {
     private var memo: Memo
+    
     private let bag = DisposeBag()
     private let trigger = PublishSubject<Void>()
     
@@ -35,7 +37,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let inputTitle: ControlProperty<String>
         let inputContent: ControlProperty<String>
         let saveButtonTap: ControlEvent<Void>
-        let closeButtonTap: ControlEvent<Void>
+        let closeButtonTap: ControlEvent<Void>        
     }
     
     struct Output {
@@ -73,8 +75,8 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
                       outputTitle: memoTitleSubject.asDriver(onErrorJustReturn: ""),
                       outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""))
     }
-    
-    func performUpdate() {
+
+    private func performUpdate() {
         do {
             let title = try memoTitleSubject.value()
             let content = try memoContentSubject.value()
@@ -84,6 +86,10 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         } catch {
             print("Memo update failed")
         }
+    }
+    
+    private func performDelete() {
+        
     }
    
 }

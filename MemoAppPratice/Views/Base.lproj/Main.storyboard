@@ -92,31 +92,45 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZoF-Wy-0c7">
-                                <rect key="frame" x="0.0" y="154" width="393" height="698"/>
+                                <rect key="frame" x="0.0" y="153" width="393" height="699"/>
                             </containerView>
-                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L5h-LA-f2l" customClass="CustomSegmentedControl" customModule="MemoAppPratice" customModuleProvider="target">
-                                <rect key="frame" x="141.66666666666666" y="113" width="110" height="32"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdI-bl-Esr">
+                                <rect key="frame" x="141.66666666666666" y="113" width="110" height="30"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L5h-LA-f2l" customClass="CustomSegmentedControl" customModule="MemoAppPratice" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="myl-aM-phl"/>
+                                            <constraint firstAttribute="width" constant="110" id="qzL-W6-L6D"/>
+                                        </constraints>
+                                        <segments>
+                                            <segment title="" image="list.bullet" catalog="system"/>
+                                            <segment title="">
+                                                <imageReference key="image" image="calendar" catalog="system" variableValue="0.0"/>
+                                            </segment>
+                                        </segments>
+                                        <color key="selectedSegmentTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </segmentedControl>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="110" id="qzL-W6-L6D"/>
+                                    <constraint firstAttribute="height" constant="30" id="Cmp-5X-xdS"/>
+                                    <constraint firstItem="L5h-LA-f2l" firstAttribute="leading" secondItem="tdI-bl-Esr" secondAttribute="leading" id="FNL-Yp-TCC"/>
+                                    <constraint firstItem="L5h-LA-f2l" firstAttribute="top" secondItem="tdI-bl-Esr" secondAttribute="top" id="UAq-pm-Xrg"/>
+                                    <constraint firstAttribute="width" constant="110" id="kLp-t7-Xwd"/>
+                                    <constraint firstAttribute="trailing" secondItem="L5h-LA-f2l" secondAttribute="trailing" id="kfa-Hx-kGk"/>
+                                    <constraint firstAttribute="bottom" secondItem="L5h-LA-f2l" secondAttribute="bottom" id="wpP-ya-AoA"/>
                                 </constraints>
-                                <segments>
-                                    <segment title="" image="list.bullet" catalog="system"/>
-                                    <segment title="">
-                                        <imageReference key="image" image="calendar" catalog="system" variableValue="0.0"/>
-                                    </segment>
-                                </segments>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="selectedSegmentTintColor" red="0.92858478276416512" green="0.57971932065474385" blue="0.75655302871625718" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </segmentedControl>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w4e-zA-auA"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="ZoF-Wy-0c7" firstAttribute="top" secondItem="L5h-LA-f2l" secondAttribute="bottom" constant="10" id="2dg-XY-E9m"/>
-                            <constraint firstItem="L5h-LA-f2l" firstAttribute="centerX" secondItem="hCJ-Xd-hPQ" secondAttribute="centerX" id="93C-U6-zXf"/>
+                            <constraint firstItem="tdI-bl-Esr" firstAttribute="centerX" secondItem="hCJ-Xd-hPQ" secondAttribute="centerX" id="AIE-Ro-Azb"/>
                             <constraint firstItem="w4e-zA-auA" firstAttribute="trailing" secondItem="ZoF-Wy-0c7" secondAttribute="trailing" id="B2V-Sq-710"/>
                             <constraint firstItem="ZoF-Wy-0c7" firstAttribute="leading" secondItem="w4e-zA-auA" secondAttribute="leading" id="ITX-pQ-Suc"/>
-                            <constraint firstItem="L5h-LA-f2l" firstAttribute="top" secondItem="w4e-zA-auA" secondAttribute="top" constant="10" id="ivh-Y0-pj1"/>
+                            <constraint firstItem="ZoF-Wy-0c7" firstAttribute="top" secondItem="tdI-bl-Esr" secondAttribute="bottom" constant="10" id="NGV-8N-h1f"/>
+                            <constraint firstItem="tdI-bl-Esr" firstAttribute="top" secondItem="w4e-zA-auA" secondAttribute="top" constant="10" id="c88-eV-Gne"/>
                             <constraint firstAttribute="bottom" secondItem="ZoF-Wy-0c7" secondAttribute="bottom" id="lTt-sb-X6h"/>
                         </constraints>
                     </view>
@@ -130,6 +144,7 @@
                         <outlet property="containerView" destination="ZoF-Wy-0c7" id="LKm-uA-PyV"/>
                         <outlet property="segmentedControl" destination="L5h-LA-f2l" id="U8A-WA-H1B"/>
                         <outlet property="settingButton" destination="uQS-rx-zyK" id="Amz-lG-8ph"/>
+                        <outlet property="shadowView" destination="tdI-bl-Esr" id="VUN-Xk-oBY"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wD-ZC-oOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -401,7 +416,7 @@
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="일정을 입력해 주세요." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FON-bH-EGn">
                                         <rect key="frame" x="10" y="0.0" width="383" height="60"/>
                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                 </subviews>
@@ -515,6 +530,7 @@
                     <connections>
                         <outlet property="closeButton" destination="iRY-Ip-S4v" id="NZW-Pa-aNc"/>
                         <outlet property="contentTextField" destination="nXx-01-PNc" id="h2n-hU-bDU"/>
+                        <outlet property="rightButton" destination="ch7-Nq-e0W" id="7We-hj-6bY"/>
                         <outlet property="saveButton" destination="dTb-xM-tUp" id="KYX-c8-EVG"/>
                         <outlet property="titleTextField" destination="FON-bH-EGn" id="LdD-Na-s6T"/>
                     </connections>

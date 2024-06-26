@@ -14,12 +14,23 @@ class MainViewController: UIViewController {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var settingButton: UIBarButtonItem!
     
+    @IBOutlet weak var shadowView: UIView!
     private let bag = DisposeBag()
 
     var viewModel: MainPageViewModel!
     
     override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()        
+        super.viewDidLayoutSubviews()
+        shadowView.layer.shadowColor = UIColor.lightGray.cgColor
+        shadowView.layer.shadowOpacity = 0.8
+        shadowView.layer.shadowOffset = CGSize(width: 0, height: 0)
+        shadowView.layer.shadowRadius = 3
+        shadowView.layer.masksToBounds = false
+        
+                // 코너 반경 설정
+        shadowView.layer.cornerRadius = 16
+        shadowView.layer.backgroundColor = UIColor.white.cgColor
+               
     }
     
     private lazy var subViewControllers: [UIViewController] = {
