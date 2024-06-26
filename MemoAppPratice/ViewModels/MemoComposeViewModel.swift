@@ -38,6 +38,8 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let inputContent: ControlProperty<String>
         let saveButtonTap: ControlEvent<Void>
         let closeButtonTap: ControlEvent<Void>        
+        let actionSheetButtonTap: ControlEvent<Void>
+        let selectedActionType: Observable<ActionSheetType>
     }
     
     struct Output {
@@ -45,6 +47,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let editCompleted: Observable<Void>
         let outputTitle: Driver<String>
         let outputContent: Driver<String>
+        let actionButtonTapped: Observable<Void>
     }
     
     func transform(input: Input) -> Output {        
@@ -70,10 +73,14 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
             .bind(to: trigger)
             .disposed(by: bag)
         
+        input.selectedActionType
+            .bind(onNext: performDelete)
+            .disposed(by: bag)
+        
         return Output(validate: validate,
                       editCompleted: trigger,
                       outputTitle: memoTitleSubject.asDriver(onErrorJustReturn: ""),
-                      outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""))
+                      outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""), actionButtonTapped: input.actionSheetButtonTap.asObservable())
     }
 
     private func performUpdate() {
@@ -88,8 +95,10 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         }
     }
     
-    private func performDelete() {
-        
+    private func performDelete(actionType: ActionSheetType) {
+        storage.deleteMemo(memo: memo)
+            .bind(to: trigger)
+            .disposed(by: bag)
     }
    
 }

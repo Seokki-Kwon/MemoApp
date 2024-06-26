@@ -528,9 +528,9 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="actionSheetButton" destination="ch7-Nq-e0W" id="7We-hj-6bY"/>
                         <outlet property="closeButton" destination="iRY-Ip-S4v" id="NZW-Pa-aNc"/>
                         <outlet property="contentTextField" destination="nXx-01-PNc" id="h2n-hU-bDU"/>
-                        <outlet property="rightButton" destination="ch7-Nq-e0W" id="7We-hj-6bY"/>
                         <outlet property="saveButton" destination="dTb-xM-tUp" id="KYX-c8-EVG"/>
                         <outlet property="titleTextField" destination="FON-bH-EGn" id="LdD-Na-s6T"/>
                     </connections>

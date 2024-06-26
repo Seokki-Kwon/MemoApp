@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 extension UITextField {
     func addBottomBorder(){
@@ -23,5 +24,22 @@ extension Date {
         formatter.dateFormat = "yyyy.MM.dd"
         let dateString = formatter.string(from: self)
         return dateString
+    }
+}
+
+extension UIViewController {
+    func presentActionSheet<T: Sequence>(actionType: T, inputSubject: PublishSubject<T.Element>) where T.Element == ActionSheetType {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        
+        for action in actionType {
+            let alertAction = UIAlertAction(title: action.title, style: action.style) { _ in
+                inputSubject.onNext(action)
+            }
+            alert.addAction(alertAction)
+        }
+        
+        let cancle = UIAlertAction(title: "취소", style: .cancel)
+        alert.addAction(cancle)
+        present(alert, animated: true)
     }
 }

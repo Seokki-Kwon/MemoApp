@@ -11,25 +11,31 @@ import RxCocoa
 
 class MemoComposeViewController: UIViewController, BindableType {
     var viewModel: MemoComposeViewModel!
-    let bag = DisposeBag()
-
+    private let bag = DisposeBag()
+    
     @IBOutlet weak var titleTextField: UITextField!
-    @IBOutlet weak var contentTextField: UITextView!    
+    @IBOutlet weak var contentTextField: UITextView!
     @IBOutlet weak var saveButton: UIButton!
     @IBOutlet weak var closeButton: UIBarButtonItem!
-    @IBOutlet weak var rightButton: UIBarButtonItem!
+    @IBOutlet weak var actionSheetButton: UIBarButtonItem!
     
     override func viewDidLoad() {
-        super.viewDidLoad()        
+        super.viewDidLoad()
     }
     
     func bindViewModel() {
+        let actionTypeSubject = PublishSubject<ActionSheetType>()
+            
+        
         let input = MemoComposeViewModel.Input(
             inputTitle: titleTextField.rx.text.orEmpty,
             inputContent: contentTextField.rx.text.orEmpty,
             saveButtonTap: saveButton.rx.tap,
-            closeButtonTap: closeButton.rx.tap)
-                
+            closeButtonTap: closeButton.rx.tap,
+            actionSheetButtonTap: actionSheetButton.rx.tap,
+            selectedActionType: actionTypeSubject.asObservable()
+            )
+        
         let output = viewModel.transform(input: input)
         
         output.validate
@@ -38,9 +44,9 @@ class MemoComposeViewController: UIViewController, BindableType {
         
         output.editCompleted
             .subscribe(onNext: { [weak self] in
-            self?.dismiss(animated: true)
-        })
-        .disposed(by: bag)
+                self?.dismiss(animated: true)
+            })
+            .disposed(by: bag)
         
         output.outputTitle
             .drive(titleTextField.rx.text)
@@ -50,10 +56,19 @@ class MemoComposeViewController: UIViewController, BindableType {
             .drive(contentTextField.rx.text)
             .disposed(by: bag)
         
+        output.actionButtonTapped
+            .subscribe(onNext: { [weak self] in
+                guard let self = self else {
+                    return
+                }
+                self.presentActionSheet(actionType: ActionSheetType.allCases, inputSubject: actionTypeSubject)
+            })
+            .disposed(by: bag)
+        
         // Cocoa touch에서는 키보드 노티피케이션을 등록하고 해제해야함
         
         // keyboard가 나타날때 next이벤트 전달
-       let willShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
+        let willShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
             .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue }
             .map { $0.cgRectValue.height }
         
@@ -62,7 +77,7 @@ class MemoComposeViewController: UIViewController, BindableType {
         
         let keyboardObservable = Observable.merge(willShowObservable, willHideObservable)
             .share()
-       
+        
         keyboardObservable
             .subscribe { [weak self] height in
                 guard let  self = self else {
@@ -73,3 +88,7 @@ class MemoComposeViewController: UIViewController, BindableType {
             .disposed(by: bag)
     }
 }
+
+
+
+
