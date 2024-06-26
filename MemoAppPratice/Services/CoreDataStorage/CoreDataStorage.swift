@@ -38,7 +38,7 @@ final class CoreDataStorage: MemoStorageType {
     
     /// 메모 추가
     @discardableResult
-    func createMemo(memo: Memo) -> RxSwift.Observable<Memo> {
+    func createMemo(memo: Memo) -> RxSwift.Observable<Void> {
         guard let entity = NSEntityDescription.entity(forEntityName: "Memo", in: mainContext) else {
             return Observable.empty()
         }
@@ -53,7 +53,7 @@ final class CoreDataStorage: MemoStorageType {
             _ = try mainContext.save()
             let currentData = try store.value()
             store.onNext(currentData + [memo])
-            return Observable.just(memo)
+            return Observable.just(())
         } catch {
             return Observable.error(error)
         }
@@ -61,7 +61,7 @@ final class CoreDataStorage: MemoStorageType {
     
     /// 메모 업데이트(제목, 내용)
     @discardableResult
-    func updateMemo(memo: Memo) -> RxSwift.Observable<Memo> {
+    func updateMemo(memo: Memo) -> RxSwift.Observable<Void> {
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Memo")
         fetchRequest.predicate = NSPredicate(format: "id == %@", memo.id as CVarArg)
         
@@ -85,7 +85,7 @@ final class CoreDataStorage: MemoStorageType {
                 return createMemo(memo: memo)
             }
             
-            return Observable.just(memo)
+            return Observable.just(())
         } catch {
             return Observable.error(error)
         }

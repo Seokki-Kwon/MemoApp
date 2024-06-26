@@ -14,12 +14,15 @@ import RxCocoa
 // ControlProperty: Subject같은 개념, UIElement.rx를 통해서 접근
 
 class MemoComposeViewModel: MemoViewModelType, ViewModelType {
-    private var memo: Memo? = nil
+    private var memo: Memo
     private let bag = DisposeBag()
-    private let memoSubject = BehaviorRelay(value: Memo(title: "", content: ""))
-    private let dismissVCSubject = PublishSubject<Void>()
+    private let trigger = PublishSubject<Void>()
+    
+    private lazy var memoTitleSubject = BehaviorSubject<String>(value: memo.title)
+    private lazy var memoContentSubject = BehaviorSubject<String>(value: memo.content)
     
     override init(storage: MemoStorageType) {
+        self.memo = Memo(title: "", content: "")
         super.init(storage: storage)
     }
     
@@ -37,34 +40,50 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
     
     struct Output {
         let validate: Driver<Bool>
-        let dismissView: Observable<Void>
+        let editCompleted: Observable<Void>
+        let outputTitle: Driver<String>
+        let outputContent: Driver<String>
     }
     
-    func transform(input: Input) -> Output {
+    func transform(input: Input) -> Output {        
         let validate = Observable.combineLatest(input.inputTitle, input.inputContent)
-            .do(onNext: { [weak self] (title, content) in
-                self?.memoSubject.accept(Memo(title: title, content: content))
-            })
             .map { !$0.0.isEmpty && !$0.1.isEmpty}
             .asDriver(onErrorJustReturn: false)
+            
+        input.inputTitle
+            .skip(1)
+            .bind(to: memoTitleSubject)
+            .disposed(by: bag)
         
-        input.closeButtonTap            
-            .bind(to: dismissVCSubject)
+        input.inputContent
+            .skip(1)
+            .bind(to: memoContentSubject)
             .disposed(by: bag)
         
         input.saveButtonTap
-            .withUnretained(self)
-            .subscribe(onNext: { (vc, _) in
-                vc.storage.updateMemo(memo: vc.memoSubject.value)
-                .subscribe(onDisposed:  {
-                    vc.dismissVCSubject.onNext(())
-                })
-                .dispose()
-        })
-        .disposed(by: bag)
+            .bind(onNext: performUpdate)
+            .disposed(by: bag)
         
-        return Output(validate: validate, dismissView: dismissVCSubject)
+        input.closeButtonTap
+            .bind(to: trigger)
+            .disposed(by: bag)
+        
+        return Output(validate: validate,
+                      editCompleted: trigger,
+                      outputTitle: memoTitleSubject.asDriver(onErrorJustReturn: ""),
+                      outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""))
     }
     
+    func performUpdate() {
+        do {
+            let title = try memoTitleSubject.value()
+            let content = try memoContentSubject.value()
+            storage.updateMemo(memo: Memo(id: memo.id, title: title, content: content))
+                .bind(to: trigger)
+                .disposed(by: bag)
+        } catch {
+            print("Memo update failed")
+        }
+    }
    
 }

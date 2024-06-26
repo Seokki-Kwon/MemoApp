@@ -11,7 +11,7 @@ import RxCocoa
 
 // 메모데이터 관련
 final class MemoStorage: MemoStorageType {
-    func createMemo(memo: Memo) -> RxSwift.Observable<Memo> {
+    func createMemo(memo: Memo) -> RxSwift.Observable<Void> {
         return Observable.empty()
     }
     
@@ -27,7 +27,7 @@ final class MemoStorage: MemoStorageType {
         return store.asObservable()
     }
     
-    func updateMemo(memo: Memo) -> Observable<Memo> {
+    func updateMemo(memo: Memo) -> Observable<Void> {
         let findMemo = store.value.filter { $0.id == memo.id }
         var updateMemo = store.value
         
@@ -39,7 +39,7 @@ final class MemoStorage: MemoStorageType {
         }
         
         store.accept(updateMemo)
-        return Observable.just(memo)
+        return Observable.just(())
     }
     
     func deleteMemo(memo: Memo) -> Observable<Void> {

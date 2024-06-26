@@ -57,7 +57,7 @@ final class MemoListViewController: UIViewController, BindableType {
             fatalError()
         }
         let viewModel = MemoComposeViewModel(memo: memo, storage: self.viewModel.storage)        
-        memoComposeVC.bind(viewModel: MemoComposeViewModel(storage: self.viewModel.storage))
+        memoComposeVC.bind(viewModel: viewModel)
         
         present(composeNav, animated: true)
     }

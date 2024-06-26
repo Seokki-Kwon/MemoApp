@@ -35,11 +35,19 @@ class MemoComposeViewController: UIViewController, BindableType {
             .drive(saveButton.rx.isEnabled)
             .disposed(by: bag)
         
-        output.dismissView
+        output.editCompleted
             .subscribe(onNext: { [weak self] in
             self?.dismiss(animated: true)
         })
         .disposed(by: bag)
+        
+        output.outputTitle
+            .drive(titleTextField.rx.text)
+            .disposed(by: bag)
+        
+        output.outputContent
+            .drive(contentTextField.rx.text)
+            .disposed(by: bag)
         
         // Cocoa touch에서는 키보드 노티피케이션을 등록하고 해제해야함
         
