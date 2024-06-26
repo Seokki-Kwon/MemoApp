@@ -14,11 +14,17 @@ import RxCocoa
 // ControlProperty: Subject같은 개념, UIElement.rx를 통해서 접근
 
 class MemoComposeViewModel: MemoViewModelType, ViewModelType {
-    let bag = DisposeBag()
+    private var memo: Memo? = nil
+    private let bag = DisposeBag()
     private let memoSubject = BehaviorRelay(value: Memo(title: "", content: ""))
     private let dismissVCSubject = PublishSubject<Void>()
     
     override init(storage: MemoStorageType) {
+        super.init(storage: storage)
+    }
+    
+    init(memo: Memo, storage: MemoStorageType) {
+        self.memo = memo
         super.init(storage: storage)
     }
     

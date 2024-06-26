@@ -17,7 +17,7 @@ final class MemoListViewController: UIViewController, BindableType {
 
     
     override func viewDidLoad() {
-        tableView.rowHeight = 80
+        tableView.rowHeight = 90
         super.viewDidLoad()
     }
     
@@ -42,25 +42,29 @@ final class MemoListViewController: UIViewController, BindableType {
         
         output.goToMemoDetailVC
             .subscribe(onNext: {[weak self] memo in
-                self?.goToMemoDetailVC(memo)}
+                self?.presentMemoComposeVC(memo)}
             )
             .disposed(by: bag)
         
     }
     
-    private func goToMemoDetailVC(_ memo: Memo) {
+    private func presentMemoComposeVC(_ memo: Memo) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard var memoDetailVC = storyboard.instantiateViewController(withIdentifier: "MemoDetail") as? MemoDetailViewController else {
+        guard let composeNav = storyboard.instantiateViewController(withIdentifier: "ComposeNav") as? UINavigationController else {
             fatalError()
         }
-        memoDetailVC.bind(viewModel: MemoDetailViewModel(memo: memo, storage: self.viewModel.storage))
+        guard var memoComposeVC = composeNav.viewControllers.first as? MemoComposeViewController else {
+            fatalError()
+        }
+        let viewModel = MemoComposeViewModel(memo: memo, storage: self.viewModel.storage)        
+        memoComposeVC.bind(viewModel: MemoComposeViewModel(storage: self.viewModel.storage))
         
-        self.navigationController?.pushViewController(memoDetailVC, animated: true)
+        present(composeNav, animated: true)
     }
     
     private func presentMemoComposeVC() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard var composeNav = storyboard.instantiateViewController(withIdentifier: "ComposeNav") as? UINavigationController else {
+        guard let composeNav = storyboard.instantiateViewController(withIdentifier: "ComposeNav") as? UINavigationController else {
             fatalError()
         }
         guard var memoComposeVC = composeNav.viewControllers.first as? MemoComposeViewController else {

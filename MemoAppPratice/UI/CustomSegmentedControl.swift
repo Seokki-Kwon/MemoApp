@@ -8,7 +8,7 @@
 import UIKit
 
 final class CustomSegmentedControl: UISegmentedControl {
-        private var cornerRadius: CGFloat = 15
+        private var cornerRadius: CGFloat = 16
 
         override func layoutSubviews() {
             super.layoutSubviews()
@@ -19,6 +19,7 @@ final class CustomSegmentedControl: UISegmentedControl {
             }
             
             selectedSegment.image = nil            
+            selectedSegment.tintColor = .white
             selectedSegment.backgroundColor = selectedSegmentTintColor
             selectedSegment.layer.removeAnimation(forKey: "SelectionBounds")
             selectedSegment.layer.cornerRadius = cornerRadius - layer.borderWidth
