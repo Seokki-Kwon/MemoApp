@@ -46,7 +46,7 @@
 		829607152C25AF6600068559 /* MemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoModel.xcdatamodel; sourceTree = "<group>"; };
 		8296071B2C25BEBD00068559 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		82971D5F2C2C476D00D4CE5B /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
-		82C88E7B2C1F4A7E00109913 /* MemoAppPratice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoAppPratice.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		82C88E7B2C1F4A7E00109913 /* DayPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C88E7E2C1F4A7E00109913 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C88E802C1F4A7E00109913 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		82C88E822C1F4A7E00109913 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +109,7 @@
 		82C88E722C1F4A7E00109913 = {
 			isa = PBXGroup;
 			children = (
-				82C88E7D2C1F4A7E00109913 /* MemoAppPratice */,
+				82C88E7D2C1F4A7E00109913 /* DayPlanner */,
 				82C88E7C2C1F4A7E00109913 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -117,12 +117,12 @@
 		82C88E7C2C1F4A7E00109913 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				82C88E7B2C1F4A7E00109913 /* MemoAppPratice.app */,
+				82C88E7B2C1F4A7E00109913 /* DayPlanner.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		82C88E7D2C1F4A7E00109913 /* MemoAppPratice */ = {
+		82C88E7D2C1F4A7E00109913 /* DayPlanner */ = {
 			isa = PBXGroup;
 			children = (
 				82F4720B2C2B42CE00EC14C9 /* UI */,
@@ -136,7 +136,7 @@
 				82C88E872C1F4A8000109913 /* Assets.xcassets */,
 				82C88E8C2C1F4A8000109913 /* Info.plist */,
 			);
-			path = MemoAppPratice;
+			path = DayPlanner;
 			sourceTree = "<group>";
 		};
 		82C88E972C1F4AEE00109913 /* Views */ = {
@@ -195,9 +195,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		82C88E7A2C1F4A7E00109913 /* MemoAppPratice */ = {
+		82C88E7A2C1F4A7E00109913 /* DayPlanner */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 82C88E8F2C1F4A8000109913 /* Build configuration list for PBXNativeTarget "MemoAppPratice" */;
+			buildConfigurationList = 82C88E8F2C1F4A8000109913 /* Build configuration list for PBXNativeTarget "DayPlanner" */;
 			buildPhases = (
 				82C88E772C1F4A7E00109913 /* Sources */,
 				82C88E782C1F4A7E00109913 /* Frameworks */,
@@ -207,13 +207,13 @@
 			);
 			dependencies = (
 			);
-			name = MemoAppPratice;
+			name = DayPlanner;
 			packageProductDependencies = (
 				82C88E932C1F4AC200109913 /* RxCocoa */,
 				82C88E952C1F4AC200109913 /* RxRelay */,
 			);
 			productName = MemoAppPratice;
-			productReference = 82C88E7B2C1F4A7E00109913 /* MemoAppPratice.app */;
+			productReference = 82C88E7B2C1F4A7E00109913 /* DayPlanner.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -231,7 +231,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 82C88E762C1F4A7E00109913 /* Build configuration list for PBXProject "MemoAppPratice" */;
+			buildConfigurationList = 82C88E762C1F4A7E00109913 /* Build configuration list for PBXProject "DayPlanner" */;
 			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -247,7 +247,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				82C88E7A2C1F4A7E00109913 /* MemoAppPratice */,
+				82C88E7A2C1F4A7E00109913 /* DayPlanner */,
 			);
 		};
 /* End PBXProject section */
@@ -369,7 +369,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -426,7 +426,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 17.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -445,20 +445,21 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P4D4ZQC4YF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MemoAppPratice/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Memo Reminder";
+				INFOPLIST_FILE = DayPlanner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DayPlanner;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = test.MemoAppPratice;
+				PRODUCT_BUNDLE_IDENTIFIER = test.DayPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -475,20 +476,21 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = P4D4ZQC4YF;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = MemoAppPratice/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = "Memo Reminder";
+				INFOPLIST_FILE = DayPlanner/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = DayPlanner;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.lifestyle";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = test.MemoAppPratice;
+				PRODUCT_BUNDLE_IDENTIFIER = test.DayPlanner;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -499,7 +501,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		82C88E762C1F4A7E00109913 /* Build configuration list for PBXProject "MemoAppPratice" */ = {
+		82C88E762C1F4A7E00109913 /* Build configuration list for PBXProject "DayPlanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82C88E8D2C1F4A8000109913 /* Debug */,
@@ -508,7 +510,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		82C88E8F2C1F4A8000109913 /* Build configuration list for PBXNativeTarget "MemoAppPratice" */ = {
+		82C88E8F2C1F4A8000109913 /* Build configuration list for PBXNativeTarget "DayPlanner" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				82C88E902C1F4A8000109913 /* Debug */,
