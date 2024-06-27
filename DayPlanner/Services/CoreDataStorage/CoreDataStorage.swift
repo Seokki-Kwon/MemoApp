@@ -120,7 +120,7 @@ final class CoreDataStorage: MemoStorageType {
     func fetchMemos() -> RxSwift.Observable<[Memo]> {
         do {
             let data = try mainContext.fetch(MemoEntity.fetchRequest())
-            let memoDatas = data.map { Memo(id: $0.id!, title: $0.title!, content: $0.content! )}
+            let memoDatas = data.map { Memo(id: $0.id!, title: $0.title!, content: $0.content!, colorString: $0.color! )}
             store.onNext(memoDatas)
             return store
         } catch {

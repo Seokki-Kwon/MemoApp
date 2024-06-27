@@ -19,6 +19,7 @@ class MemoComposeViewController: UIViewController, BindableType {
     @IBOutlet weak var closeButton: UIBarButtonItem!
     @IBOutlet weak var actionSheetButton: UIBarButtonItem!
     @IBOutlet weak var colorButton: UIButton!
+    @IBOutlet weak var dateButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,6 +28,7 @@ class MemoComposeViewController: UIViewController, BindableType {
     func bindViewModel() {
         let actionTypeSubject = PublishSubject<ActionSheetType>()
         let selecteColorSubject = PublishSubject<UIColor>()
+        let dateSubject = PublishSubject<Date>()
         let colorPickerView = UIColorPickerViewController()
         
         colorPickerView.rx.didSeleteColor
@@ -41,7 +43,9 @@ class MemoComposeViewController: UIViewController, BindableType {
             actionSheetButtonTap: actionSheetButton.rx.tap,
             selectedActionType: actionTypeSubject.asObservable(),
             colorButtonTap: colorButton.rx.tap,
-       selecteColor: selecteColorSubject)
+            selecteColor: selecteColorSubject,
+            datePickerTap: dateButton.rx.tap,
+            inputDate: dateSubject)
         
         let output = viewModel.transform(input: input)
         
@@ -79,10 +83,21 @@ class MemoComposeViewController: UIViewController, BindableType {
             .disposed(by: bag)
         
         output.seleteColor
-            .drive(colorButton.rx.backgroundColor, 
+            .drive(colorButton.rx.backgroundColor,
                    navigationController!.navigationBar.scrollEdgeAppearance!.rx.backgroundColor)
             .disposed(by: bag)
-            
+        
+        output.presentDatePicker
+            .flatMap { [unowned self] in self.presentDatePicker() }
+            .bind(to: dateSubject)
+            .disposed(by: bag)
+        
+        output.outputDate
+            .map { $0.toDateAndTimeString }
+            .asDriver(onErrorJustReturn: "")
+            .drive(dateButton.rx.title())
+            .disposed(by: bag)
+        
         let willShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
             .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue }
             .map { $0.cgRectValue.height }

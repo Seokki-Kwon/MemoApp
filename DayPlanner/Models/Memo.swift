@@ -12,7 +12,7 @@ struct Memo {
     var id: String = UUID().uuidString
     var title: String
     var content: String   
-    let date = Date()
+    var date = Date()
     var colorString: String = UIColor.systemGray.toHexString()
     
     var color: UIColor {

@@ -8,6 +8,7 @@
 import UIKit
 import RxSwift
 
+// MARK: - UITextField
 extension UITextField {
     func addBottomBorder(){
         let bottomLine = CALayer()
@@ -18,6 +19,7 @@ extension UITextField {
     }
 }
 
+// MARK: - Date
 extension Date {
     var toDateString: String? {
         let formatter = DateFormatter()
@@ -25,8 +27,17 @@ extension Date {
         let dateString = formatter.string(from: self)
         return dateString
     }
+    
+    var toDateAndTimeString: String? {
+        let formatter = DateFormatter()
+        formatter.locale = Locale(identifier:"ko_KR")
+        formatter.dateFormat = "yyyy.MM.dd(E) / a HH:mm"
+        let dateString = formatter.string(from: self)
+        return dateString
+    }
 }
 
+// MARK: - UIViewController
 extension UIViewController {
     func presentActionSheet<T: Sequence>(actionType: T, inputSubject: PublishSubject<T.Element>) where T.Element == ActionSheetType {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -42,8 +53,43 @@ extension UIViewController {
         alert.addAction(cancle)
         present(alert, animated: true)
     }
+    
+    func presentDatePicker() -> Observable<Date> {
+        Observable.create { [weak self] observer in
+            let alert = UIAlertController(title: nil, message: "완료하실 일정을 선택 해주세요.", preferredStyle: .actionSheet)
+            let ok = UIAlertAction(title: "선택 완료", style: .cancel) { _ in
+                observer.onCompleted()
+            }
+                    
+            let datePicker = UIDatePicker()
+            datePicker.datePickerMode = .dateAndTime
+            datePicker.preferredDatePickerStyle = .wheels
+            datePicker.locale = Locale(identifier: "ko_KR")
+            datePicker.minimumDate = Date()
+            
+            alert.addAction(ok)
+                    
+            let vc = UIViewController()
+            vc.view = datePicker
+            
+            alert.setValue(vc, forKey: "contentViewController")
+            
+            let dateObservable = datePicker.rx.date
+                      .take(until: alert.rx.deallocated) // alert가 해제될 때까지 date observable을 구독
+                      .subscribe(onNext: { date in
+                          observer.onNext(date)
+                      })
+
+            self?.present(alert, animated: true)
+            
+            return Disposables.create {                
+                dateObservable.dispose()
+            }
+        }
+    }
 }
 
+// MARK: - UIColor
 extension UIColor {
     convenience init(hex: String, alpha: CGFloat = 1.0) {
         var hexFormatted: String = hex.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased()

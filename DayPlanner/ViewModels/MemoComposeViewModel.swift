@@ -23,6 +23,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
     private lazy var memoTitleSubject = BehaviorSubject<String>(value: memo.title)
     private lazy var memoContentSubject = BehaviorSubject<String>(value: memo.content)
     private lazy var colorSubject = BehaviorSubject<UIColor>(value: memo.color)
+    private lazy var dateSubject = BehaviorSubject(value: memo.date)
     
     override init(storage: MemoStorageType) {
         self.memo = Memo(title: "", content: "")
@@ -43,6 +44,8 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let selectedActionType: Observable<ActionSheetType>
         let colorButtonTap: ControlEvent<Void>
         let selecteColor: Observable<UIColor>
+        let datePickerTap: ControlEvent<Void>
+        let inputDate: PublishSubject<Date>
     }
     
     struct Output {
@@ -53,6 +56,8 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let actionButtonTapped: Observable<Void>
         let presentColorPicker: Observable<Void>
         let seleteColor: Driver<UIColor>
+        let presentDatePicker: Observable<Void>
+        let outputDate: Observable<Date>
     }
     
     func transform(input: Input) -> Output {        
@@ -86,13 +91,19 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
             .bind(to: colorSubject)
             .disposed(by: bag)
         
+        input.inputDate
+            .bind(to: dateSubject)
+            .disposed(by: bag)
+        
         return Output(validate: validate,
                       editCompleted: trigger,
                       outputTitle: memoTitleSubject.asDriver(onErrorJustReturn: ""),
                       outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""), 
                       actionButtonTapped: input.actionSheetButtonTap.asObservable(),
                       presentColorPicker: input.colorButtonTap.asObservable(),
-                      seleteColor: colorSubject.asDriver(onErrorJustReturn: .white))
+                      seleteColor: colorSubject.asDriver(onErrorJustReturn: .white),
+                      presentDatePicker: input.datePickerTap.asObservable(),
+                      outputDate: dateSubject)
     }
 
     private func performUpdate() {
@@ -100,7 +111,8 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
             let title = try memoTitleSubject.value()
             let content = try memoContentSubject.value()
             let color = try colorSubject.value()
-            storage.updateMemo(memo: Memo(id: memo.id, title: title, content: content, colorString: color.toHexString()))
+            let date = try dateSubject.value()
+            storage.updateMemo(memo: Memo(id: memo.id, title: title, content: content, date: date, colorString: color.toHexString()))
                 .bind(to: trigger)
                 .disposed(by: bag)
         } catch {
