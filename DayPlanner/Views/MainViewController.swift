@@ -89,7 +89,7 @@ extension MainViewController: BindableType {
             .disposed(by: bag)
         
         output.movePage
-            .map { $0 == 0 ? "👀 다가오는 일정" : "🗓️ 캘린더 보기"}
+            .map { $0 == 0 ? "다가오는 일정" : "캘린더"}
             .drive(navTitle.rx.title)
             .disposed(by: bag)
         

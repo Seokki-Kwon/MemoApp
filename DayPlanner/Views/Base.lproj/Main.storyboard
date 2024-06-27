@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Laz-Ff-X9M">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -9,84 +10,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--나의 메모-->
-        <scene sceneID="tne-QT-ifu">
-            <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="1OM-Wl-8PF">
-                                <rect key="frame" x="0.0" y="59" width="393" height="759"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="128" id="aU1-4n-bGc" customClass="MemoTableViewCell" customModule="MemoAppPratice" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="128"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="aU1-4n-bGc" id="ye8-c2-MpZ">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="128"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8tc-Ei-Z4S">
-                                                    <rect key="frame" x="10" y="10" width="373" height="108"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6ZU-SG-znw">
-                                                            <rect key="frame" x="10" y="10.000000000000002" width="49" height="27.666666666666671"/>
-                                                            <fontDescription key="fontDescription" type="boldSystem" pointSize="24"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="content" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cfq-pd-bEM">
-                                                            <rect key="frame" x="10.000000000000004" y="47.666666666666664" width="58.333333333333343" height="20.999999999999993"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                    <color key="backgroundColor" systemColor="systemYellowColor"/>
-                                                    <constraints>
-                                                        <constraint firstItem="6ZU-SG-znw" firstAttribute="top" secondItem="8tc-Ei-Z4S" secondAttribute="top" constant="10" id="2BU-cW-NK0"/>
-                                                        <constraint firstItem="6ZU-SG-znw" firstAttribute="leading" secondItem="8tc-Ei-Z4S" secondAttribute="leading" constant="10" id="Bol-Ir-hRC"/>
-                                                        <constraint firstItem="Cfq-pd-bEM" firstAttribute="top" secondItem="6ZU-SG-znw" secondAttribute="bottom" constant="10" id="mtR-pQ-MKE"/>
-                                                        <constraint firstItem="Cfq-pd-bEM" firstAttribute="leading" secondItem="8tc-Ei-Z4S" secondAttribute="leading" constant="10" id="yLc-Eh-vwG"/>
-                                                    </constraints>
-                                                </view>
-                                            </subviews>
-                                            <color key="backgroundColor" systemColor="systemGray5Color"/>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="8tc-Ei-Z4S" secondAttribute="trailing" constant="10" id="DtO-Wy-J8E"/>
-                                                <constraint firstAttribute="bottom" secondItem="8tc-Ei-Z4S" secondAttribute="bottom" constant="10" id="SgH-3D-BwG"/>
-                                                <constraint firstItem="8tc-Ei-Z4S" firstAttribute="leading" secondItem="ye8-c2-MpZ" secondAttribute="leading" constant="10" id="m4i-ll-vOw"/>
-                                                <constraint firstItem="8tc-Ei-Z4S" firstAttribute="top" secondItem="ye8-c2-MpZ" secondAttribute="top" constant="10" id="vn9-7J-A31"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="1OM-Wl-8PF" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="6XM-3b-k7P"/>
-                            <constraint firstItem="1OM-Wl-8PF" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="a2T-k5-T3E"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="1OM-Wl-8PF" secondAttribute="trailing" id="kDi-vD-cjh"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="1OM-Wl-8PF" secondAttribute="bottom" id="nsI-sV-rad"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="나의 메모" largeTitleDisplayMode="always" id="3Rv-Z1-xiQ"/>
-                    <connections>
-                        <outlet property="memoTableView" destination="1OM-Wl-8PF" id="Rhg-dC-Zro"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1066.4122137404579" y="-2.1126760563380285"/>
-        </scene>
         <!--Main View Controller-->
         <scene sceneID="XzG-FS-4Zm">
             <objects>
-                <viewController id="aDn-KU-aL0" customClass="MainViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="aDn-KU-aL0" customClass="MainViewController" customModule="DayPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="hCJ-Xd-hPQ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -97,7 +24,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tdI-bl-Esr">
                                 <rect key="frame" x="141.66666666666666" y="113" width="110" height="30"/>
                                 <subviews>
-                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L5h-LA-f2l" customClass="CustomSegmentedControl" customModule="MemoAppPratice" customModuleProvider="target">
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="L5h-LA-f2l" customClass="CustomSegmentedControl" customModule="DayPlanner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="110" height="31"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="myl-aM-phl"/>
@@ -158,7 +85,7 @@
         <!--나의 메모-->
         <scene sceneID="ZkA-VN-Ekb">
             <objects>
-                <viewController storyboardIdentifier="MemoList" id="teO-UM-Ofx" customClass="MemoListViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoList" id="teO-UM-Ofx" customClass="MemoListViewController" customModule="DayPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ga8-Ib-Czn">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -167,7 +94,7 @@
                                 <rect key="frame" x="0.0" y="59" width="393" height="793"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="113" id="fFF-JY-lad" customClass="MemoTableViewCell" customModule="MemoAppPratice" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="MemoCell" rowHeight="113" id="fFF-JY-lad" customClass="MemoTableViewCell" customModule="DayPlanner" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="50" width="393" height="113"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fFF-JY-lad" id="B3u-MF-oOy">
@@ -293,7 +220,7 @@
         <!--Calender View Controller-->
         <scene sceneID="O2g-2w-mgl">
             <objects>
-                <viewController storyboardIdentifier="MemoCalender" id="Dh9-7x-dyc" customClass="CalenderViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoCalender" id="Dh9-7x-dyc" customClass="CalenderViewController" customModule="DayPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ybG-yY-weK">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,99 +244,10 @@
             </objects>
             <point key="canvasLocation" x="6753" y="674"/>
         </scene>
-        <!--Memo Detail View Controller-->
-        <scene sceneID="euE-Hu-B12">
-            <objects>
-                <viewController storyboardIdentifier="MemoDetail" id="wHG-C3-u4Z" customClass="MemoDetailViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="ekh-pN-ANy">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="zyj-ys-NOh">
-                                <rect key="frame" x="10" y="109.33333333333331" width="373" height="698.66666666666674"/>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
-                                <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="10"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzI-zn-6d4">
-                                <rect key="frame" x="273" y="64.333333333333329" width="110" height="35"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="pencil" catalog="system" title="메모 편집">
-                                    <color key="baseForegroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                </buttonConfiguration>
-                            </button>
-                            <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Sen-cL-O67">
-                                <rect key="frame" x="10" y="69" width="233" height="25.666666666666671"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kqi-kt-DPw">
-                                <rect key="frame" x="161.66666666666666" y="728" width="70" height="70"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="imt-DO-1h9"/>
-                                    <constraint firstAttribute="height" constant="70" id="tbX-L9-gl2"/>
-                                </constraints>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="trash.circle.fill" catalog="system"/>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c1w-TV-13x">
-                                <rect key="frame" x="166.66666666666666" y="738" width="60" height="60"/>
-                                <color key="backgroundColor" systemColor="systemRedColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="60" id="asX-bL-rvE"/>
-                                    <constraint firstAttribute="height" constant="60" id="kUk-NI-7eB"/>
-                                </constraints>
-                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="plain" image="trash" catalog="system"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="30"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                            </button>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="3WW-LB-lu6"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="3WW-LB-lu6" firstAttribute="trailing" secondItem="zyj-ys-NOh" secondAttribute="trailing" constant="10" id="2oj-Bc-qNz"/>
-                            <constraint firstItem="3WW-LB-lu6" firstAttribute="bottom" secondItem="c1w-TV-13x" secondAttribute="bottom" constant="20" id="6tw-or-jAK"/>
-                            <constraint firstItem="3WW-LB-lu6" firstAttribute="trailing" secondItem="MzI-zn-6d4" secondAttribute="trailing" constant="10" id="77m-h3-dal"/>
-                            <constraint firstItem="zyj-ys-NOh" firstAttribute="leading" secondItem="3WW-LB-lu6" secondAttribute="leading" constant="10" id="B0z-p5-QZx"/>
-                            <constraint firstItem="3WW-LB-lu6" firstAttribute="bottom" secondItem="zyj-ys-NOh" secondAttribute="bottom" constant="10" id="KLD-GL-xuV"/>
-                            <constraint firstItem="Sen-cL-O67" firstAttribute="leading" secondItem="3WW-LB-lu6" secondAttribute="leading" constant="10" id="N9z-Qu-8XT"/>
-                            <constraint firstItem="zyj-ys-NOh" firstAttribute="top" secondItem="MzI-zn-6d4" secondAttribute="bottom" constant="10" id="SIF-gD-ycW"/>
-                            <constraint firstItem="c1w-TV-13x" firstAttribute="centerX" secondItem="ekh-pN-ANy" secondAttribute="centerX" id="ToE-SI-v2y"/>
-                            <constraint firstItem="MzI-zn-6d4" firstAttribute="leading" secondItem="Sen-cL-O67" secondAttribute="trailing" constant="30" id="VuZ-FA-S4c"/>
-                            <constraint firstItem="kqi-kt-DPw" firstAttribute="centerX" secondItem="ekh-pN-ANy" secondAttribute="centerX" id="hWV-Oo-Pa6"/>
-                            <constraint firstItem="MzI-zn-6d4" firstAttribute="centerY" secondItem="Sen-cL-O67" secondAttribute="centerY" id="iWx-Gn-JcB"/>
-                            <constraint firstItem="Sen-cL-O67" firstAttribute="top" secondItem="3WW-LB-lu6" secondAttribute="top" constant="10" id="nvX-c7-ydd"/>
-                            <constraint firstItem="3WW-LB-lu6" firstAttribute="bottom" secondItem="kqi-kt-DPw" secondAttribute="bottom" constant="20" id="tPg-3p-Y1m"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="contentLabel" destination="zyj-ys-NOh" id="DlN-Id-tE7"/>
-                        <outlet property="deleteButton" destination="c1w-TV-13x" id="qqA-Vm-XTw"/>
-                        <outlet property="editButton" destination="MzI-zn-6d4" id="ohr-xT-j72"/>
-                        <outlet property="titleTextField" destination="Sen-cL-O67" id="fyb-AH-8yP"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="LA8-J4-JrH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3763" y="725"/>
-        </scene>
         <!--일정-->
         <scene sceneID="W0y-Pb-wcP">
             <objects>
-                <viewController storyboardIdentifier="MemoCompose" modalPresentationStyle="overFullScreen" id="uhF-rD-Jhp" customClass="MemoComposeViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MemoCompose" modalPresentationStyle="overFullScreen" id="uhF-rD-Jhp" customClass="MemoComposeViewController" customModule="DayPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="dJF-Yb-aBR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -600,7 +438,7 @@
         <!--Setting View Controller-->
         <scene sceneID="R5e-d4-5an">
             <objects>
-                <viewController storyboardIdentifier="Setting" id="0k6-ea-WGK" customClass="SettingViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="Setting" id="0k6-ea-WGK" customClass="SettingViewController" customModule="DayPlanner" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Bfj-Lp-b03">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -629,21 +467,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7sk-X8-B5l" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="5745.801526717557" y="-718.30985915492965"/>
-        </scene>
-        <!--Main Page View Controller-->
-        <scene sceneID="ZlJ-gQ-2RS">
-            <objects>
-                <viewController storyboardIdentifier="MainPage" id="v7B-fQ-wwE" customClass="MainPageViewController" customModule="MemoAppPratice" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="xZR-Yx-CkZ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Ok8-yf-Kdp"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="7bj-2O-O3b" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="6044" y="-2"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="6iR-gg-9m1">
@@ -682,10 +505,7 @@
         <image name="list.bullet" catalog="system" width="128" height="87"/>
         <image name="note" catalog="system" width="128" height="107"/>
         <image name="paintpalette" catalog="system" width="128" height="105"/>
-        <image name="pencil" catalog="system" width="128" height="113"/>
         <image name="plus.square.on.square" catalog="system" width="128" height="116"/>
-        <image name="trash" catalog="system" width="117" height="128"/>
-        <image name="trash.circle.fill" catalog="system" width="128" height="123"/>
         <image name="xmark" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -694,22 +514,19 @@
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGray5Color">
-            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemGroupedBackgroundColor">
-            <color red="0.94901960784313721" green="0.94901960784313721" blue="0.96862745098039216" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemMintColor">
-            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemOrangeColor">
-            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemRedColor">
-            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </systemColor>
-        <systemColor name="systemYellowColor">
-            <color red="1" green="0.80000000000000004" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
