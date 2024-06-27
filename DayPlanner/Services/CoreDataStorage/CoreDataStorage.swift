@@ -49,6 +49,7 @@ final class CoreDataStorage: MemoStorageType {
         memoObject.setValue(memo.content, forKey: "content")
         memoObject.setValue(memo.date, forKey: "date")
         memoObject.setValue(memo.colorString, forKey: "color")
+        
         do {
             _ = try mainContext.save()
             let currentData = try store.value()
@@ -119,8 +120,8 @@ final class CoreDataStorage: MemoStorageType {
     @discardableResult
     func fetchMemos() -> RxSwift.Observable<[Memo]> {
         do {
-            let data = try mainContext.fetch(MemoEntity.fetchRequest())
-            let memoDatas = data.map { Memo(id: $0.id!, title: $0.title!, content: $0.content!, colorString: $0.color! )}
+            let data = try mainContext.fetch(MemoEntity.fetchRequest())            
+            let memoDatas = data.map { Memo(id: $0.id!, title: $0.title!, content: $0.content!, date: $0.date!, colorString: $0.color! )}
             store.onNext(memoDatas)
             return store
         } catch {
