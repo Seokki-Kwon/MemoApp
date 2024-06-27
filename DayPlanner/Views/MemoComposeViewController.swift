@@ -26,7 +26,12 @@ class MemoComposeViewController: UIViewController, BindableType {
     
     func bindViewModel() {
         let actionTypeSubject = PublishSubject<ActionSheetType>()
+        let selecteColorSubject = PublishSubject<UIColor>()
         let colorPickerView = UIColorPickerViewController()
+        
+        colorPickerView.rx.didSeleteColor
+            .bind(to: selecteColorSubject)
+            .disposed(by: bag)
         
         let input = MemoComposeViewModel.Input(
             inputTitle: titleTextField.rx.text.orEmpty,
@@ -35,7 +40,8 @@ class MemoComposeViewController: UIViewController, BindableType {
             closeButtonTap: closeButton.rx.tap,
             actionSheetButtonTap: actionSheetButton.rx.tap,
             selectedActionType: actionTypeSubject.asObservable(),
-            colorButtonTap: colorButton.rx.tap)
+            colorButtonTap: colorButton.rx.tap,
+       selecteColor: selecteColorSubject)
         
         let output = viewModel.transform(input: input)
         
@@ -71,10 +77,15 @@ class MemoComposeViewController: UIViewController, BindableType {
                 self?.present(colorPickerView, animated: true)
             }
             .disposed(by: bag)
-            
-        // Cocoa touch에서는 키보드 노티피케이션을 등록하고 해제해야함
         
-        // keyboard가 나타날때 next이벤트 전달
+        output.seleteColor
+            .drive(colorButton.rx.backgroundColor)
+            .disposed(by: bag)
+        
+        output.seleteColor
+            .drive(navigationController!.navigationBar.scrollEdgeAppearance!.rx.backgroundColor)
+            .disposed(by: bag)
+            
         let willShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)
             .compactMap { $0.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue }
             .map { $0.cgRectValue.height }

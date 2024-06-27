@@ -16,6 +16,7 @@
 		829607162C25AF6600068559 /* MemoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 829607142C25AF6600068559 /* MemoApp.xcdatamodeld */; };
 		8296071C2C25BEBD00068559 /* CoreDataStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8296071B2C25BEBD00068559 /* CoreDataStorage.swift */; };
 		82971D602C2C476D00D4CE5B /* Type.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82971D5F2C2C476D00D4CE5B /* Type.swift */; };
+		82C6BA6C2C2D2D80001CD0FC /* RxColorPickerViewControllerDelegateProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C6BA6B2C2D2D80001CD0FC /* RxColorPickerViewControllerDelegateProxy.swift */; };
 		82C88E7F2C1F4A7E00109913 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88E7E2C1F4A7E00109913 /* AppDelegate.swift */; };
 		82C88E812C1F4A7E00109913 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 82C88E802C1F4A7E00109913 /* SceneDelegate.swift */; };
 		82C88E862C1F4A7E00109913 /* Base in Resources */ = {isa = PBXBuildFile; fileRef = 82C88E852C1F4A7E00109913 /* Base */; };
@@ -44,6 +45,7 @@
 		829607152C25AF6600068559 /* MemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoModel.xcdatamodel; sourceTree = "<group>"; };
 		8296071B2C25BEBD00068559 /* CoreDataStorage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStorage.swift; sourceTree = "<group>"; };
 		82971D5F2C2C476D00D4CE5B /* Type.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Type.swift; sourceTree = "<group>"; };
+		82C6BA6B2C2D2D80001CD0FC /* RxColorPickerViewControllerDelegateProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxColorPickerViewControllerDelegateProxy.swift; sourceTree = "<group>"; };
 		82C88E7B2C1F4A7E00109913 /* DayPlanner.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DayPlanner.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		82C88E7E2C1F4A7E00109913 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		82C88E802C1F4A7E00109913 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -80,6 +82,7 @@
 			children = (
 				8213A0B82C2179D100AAEEAC /* Extensions.swift */,
 				82971D5F2C2C476D00D4CE5B /* Type.swift */,
+				82C6BA6B2C2D2D80001CD0FC /* RxColorPickerViewControllerDelegateProxy.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -278,6 +281,7 @@
 				8296071C2C25BEBD00068559 /* CoreDataStorage.swift in Sources */,
 				82C88E9C2C1F4D6800109913 /* MemoTableViewCell.swift in Sources */,
 				829607162C25AF6600068559 /* MemoApp.xcdatamodeld in Sources */,
+				82C6BA6C2C2D2D80001CD0FC /* RxColorPickerViewControllerDelegateProxy.swift in Sources */,
 				8285B56D2C2953D400180AF4 /* MainViewModel.swift in Sources */,
 				82C88EAA2C1F586A00109913 /* BindableType.swift in Sources */,
 				82FC07CE2C288018002E5C82 /* SettingViewController.swift in Sources */,

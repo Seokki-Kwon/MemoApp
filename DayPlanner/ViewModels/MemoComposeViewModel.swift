@@ -22,6 +22,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
     
     private lazy var memoTitleSubject = BehaviorSubject<String>(value: memo.title)
     private lazy var memoContentSubject = BehaviorSubject<String>(value: memo.content)
+    private lazy var colorSubject = BehaviorSubject<UIColor>(value: .orange)
     
     override init(storage: MemoStorageType) {
         self.memo = Memo(title: "", content: "")
@@ -41,6 +42,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let actionSheetButtonTap: ControlEvent<Void>
         let selectedActionType: Observable<ActionSheetType>
         let colorButtonTap: ControlEvent<Void>
+        let selecteColor: Observable<UIColor>
     }
     
     struct Output {
@@ -50,6 +52,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
         let outputContent: Driver<String>
         let actionButtonTapped: Observable<Void>
         let presentColorPicker: Observable<Void>
+        let seleteColor: Driver<UIColor>
     }
     
     func transform(input: Input) -> Output {        
@@ -79,11 +82,17 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
             .bind(onNext: performDelete)
             .disposed(by: bag)
         
+        input.selecteColor
+            .bind(to: colorSubject)
+            .disposed(by: bag)
+        
         return Output(validate: validate,
                       editCompleted: trigger,
                       outputTitle: memoTitleSubject.asDriver(onErrorJustReturn: ""),
-                      outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""), actionButtonTapped: input.actionSheetButtonTap.asObservable(),
-                      presentColorPicker: input.colorButtonTap.asObservable())
+                      outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""), 
+                      actionButtonTapped: input.actionSheetButtonTap.asObservable(),
+                      presentColorPicker: input.colorButtonTap.asObservable(),
+                      seleteColor: colorSubject.asDriver(onErrorJustReturn: .orange))
     }
 
     private func performUpdate() {
