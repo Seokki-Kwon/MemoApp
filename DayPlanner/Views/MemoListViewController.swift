@@ -14,7 +14,7 @@ final class MemoListViewController: UIViewController, BindableType {
     private let bag = DisposeBag()
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
-
+    
     
     override func viewDidLoad() {
         tableView.rowHeight = 90
@@ -32,6 +32,7 @@ final class MemoListViewController: UIViewController, BindableType {
             .drive(tableView.rx.items(cellIdentifier: MemoTableViewCell.reuseIdentifier, cellType: MemoTableViewCell.self)) {row, memo, cell in
                 cell.titleLabel.text = memo.title                
                 cell.dateLabel.text = memo.date.toDateString
+                cell.colorView.backgroundColor = memo.color
             }
             .disposed(by: bag)
         

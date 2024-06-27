@@ -48,7 +48,7 @@ final class CoreDataStorage: MemoStorageType {
         memoObject.setValue(memo.title, forKey: "title")
         memoObject.setValue(memo.content, forKey: "content")
         memoObject.setValue(memo.date, forKey: "date")
-        
+        memoObject.setValue(memo.colorString, forKey: "color")
         do {
             _ = try mainContext.save()
             let currentData = try store.value()
@@ -72,6 +72,7 @@ final class CoreDataStorage: MemoStorageType {
                 memoObject.setValue(memo.title, forKey: "title")
                 memoObject.setValue(memo.content, forKey: "content")
                 memoObject.setValue(memo.date, forKey: "date")
+                memoObject.setValue(memo.colorString, forKey: "color")
                 
                 do {
                     _ = try mainContext.save()

@@ -79,11 +79,8 @@ class MemoComposeViewController: UIViewController, BindableType {
             .disposed(by: bag)
         
         output.seleteColor
-            .drive(colorButton.rx.backgroundColor)
-            .disposed(by: bag)
-        
-        output.seleteColor
-            .drive(navigationController!.navigationBar.scrollEdgeAppearance!.rx.backgroundColor)
+            .drive(colorButton.rx.backgroundColor, 
+                   navigationController!.navigationBar.scrollEdgeAppearance!.rx.backgroundColor)
             .disposed(by: bag)
             
         let willShowObservable = NotificationCenter.default.rx.notification(UIResponder.keyboardWillShowNotification)

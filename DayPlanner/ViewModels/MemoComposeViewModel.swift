@@ -22,7 +22,7 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
     
     private lazy var memoTitleSubject = BehaviorSubject<String>(value: memo.title)
     private lazy var memoContentSubject = BehaviorSubject<String>(value: memo.content)
-    private lazy var colorSubject = BehaviorSubject<UIColor>(value: .orange)
+    private lazy var colorSubject = BehaviorSubject<UIColor>(value: memo.color)
     
     override init(storage: MemoStorageType) {
         self.memo = Memo(title: "", content: "")
@@ -92,14 +92,15 @@ class MemoComposeViewModel: MemoViewModelType, ViewModelType {
                       outputContent: memoContentSubject.asDriver(onErrorJustReturn: ""), 
                       actionButtonTapped: input.actionSheetButtonTap.asObservable(),
                       presentColorPicker: input.colorButtonTap.asObservable(),
-                      seleteColor: colorSubject.asDriver(onErrorJustReturn: .orange))
+                      seleteColor: colorSubject.asDriver(onErrorJustReturn: .white))
     }
 
     private func performUpdate() {
         do {
             let title = try memoTitleSubject.value()
             let content = try memoContentSubject.value()
-            storage.updateMemo(memo: Memo(id: memo.id, title: title, content: content))
+            let color = try colorSubject.value()
+            storage.updateMemo(memo: Memo(id: memo.id, title: title, content: content, colorString: color.toHexString()))
                 .bind(to: trigger)
                 .disposed(by: bag)
         } catch {

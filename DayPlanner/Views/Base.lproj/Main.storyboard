@@ -166,6 +166,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="colorView" destination="1Pd-4X-hg1" id="NKN-qr-OYG"/>
                                             <outlet property="dateLabel" destination="oNM-ic-TG3" id="Fo5-9a-Yb4"/>
                                             <outlet property="memoView" destination="Qag-So-Kcu" id="YlO-cx-nPj"/>
                                             <outlet property="titleLabel" destination="Qgg-Ho-rNW" id="WrC-3v-xYp"/>

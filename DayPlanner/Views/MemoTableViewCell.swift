@@ -13,6 +13,7 @@ class MemoTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!    
     @IBOutlet weak var memoView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var colorView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
