@@ -8,7 +8,7 @@
 import UIKit
 import RxSwift
 
-class CalendarHelper {
+final class CalendarHelper {
     static let shared = CalendarHelper()
     private init() {}
     let calendar = Calendar.current
@@ -17,8 +17,8 @@ class CalendarHelper {
         return Observable.just(calendar.date(byAdding: .month, value: 1, to: date)!)
     }
     
-    func minusMonth(date: Date) -> Date {
-        return calendar.date(byAdding: .month, value: -1, to: date)!
+    func minusMonth(date: Date) -> Observable<Date> {
+        return Observable.just(calendar.date(byAdding: .month, value: -1, to: date)!)
     }
     
     func monthString(date: Date) -> String {
@@ -54,8 +54,7 @@ class CalendarHelper {
     
     /// 요일 1-7
     func weekDay(date: Date) -> Int {
-        let components = calendar.dateComponents([.weekday], from: date)
-        print(components.weekday!)
+        let components = calendar.dateComponents([.weekday], from: date)        
         return components.weekday! - 1
     }
     
@@ -63,7 +62,7 @@ class CalendarHelper {
         let daysInMonth = daysInMonth(date: date)
         let firstDayOfMonth = firstOfMonth(date: date)
         let startingSpace = weekDay(date: firstDayOfMonth)
-        
+            
         var count: Int = 1
         var days: [String] = []
         while(count <= 42) {

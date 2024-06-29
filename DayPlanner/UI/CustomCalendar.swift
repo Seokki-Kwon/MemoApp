@@ -14,45 +14,62 @@ class CustomCalendar: UIView {
     @IBOutlet weak var collectionView: UICollectionView!
     @IBOutlet weak var nextButton: UIButton!
     @IBOutlet weak var prevButton: UIButton!
+    private var didLayoutOnce = false
     
     private let bag = DisposeBag()
-    private let calendarHelper = CalendarHelper.shared
     
-    var dateSubject = BehaviorRelay<Date>(value: Date())
-    var daySubject = BehaviorSubject<[String]>(value: [])
+    var selectDateSubject = BehaviorRelay<Date>(value: Date())
+    var fullDaySubject = BehaviorRelay<[String]>(value: [])
     
     override func layoutSubviews() {
         super.layoutSubviews()
-        collectionView.dataSource = nil
-        collectionView.delegate = nil
-        bind()
+        collectionView.backgroundColor = UIColor.clear
+        
+        if !didLayoutOnce {
+            didLayoutOnce = true
+            collectionView.dataSource = nil
+            collectionView.delegate = nil
+            bind()
+        }
     }
     
     func bind() {
-        calendarHelper.makeMonth(date: dateSubject.value)
-            .take(1)
-            .bind(to: daySubject)
-            .disposed(by: bag)
-        
         collectionView.rx.setDelegate(self)
             .disposed(by: bag)
         
-        daySubject
+        fullDaySubject
             .asDriver(onErrorJustReturn: [])
             .drive(collectionView.rx.items(cellIdentifier: CalendarCell.reuseIdentifier, cellType: CalendarCell.self)){row, element, cell in
                 cell.dayOfMonth.text = element
             }
             .disposed(by: bag)
-            
-       nextButton.rx.tap
+        
+        nextButton.rx.tap
             .withUnretained(self)
-            .map({ (owner, _) in
-                owner.calendarHelper.plusMonth(date: owner.dateSubject.value)
+            .flatMap({ (owner, _) in
+              CalendarHelper.shared.plusMonth(date: owner.selectDateSubject.value)
             })
-            .flatMap { $0 }
-            .bind(to: dateSubject)
+            .bind(to: selectDateSubject)
             .disposed(by: bag)
         
+        prevButton.rx.tap
+            .withUnretained(self)
+            .flatMap({ (owner, _) in
+                CalendarHelper.shared.minusMonth(date: owner.selectDateSubject.value)
+            })
+            .bind(to: selectDateSubject)
+            .disposed(by: bag)
+        
+        selectDateSubject
+            .flatMap { CalendarHelper.shared.makeMonth(date: $0) }
+            .bind(to: fullDaySubject)
+            .disposed(by: bag)
+        
+        selectDateSubject
+            .map { $0.toDateAndMonthString }
+            .asDriver(onErrorJustReturn: "")
+            .drive(monthLabel.rx.text)
+            .disposed(by: bag)
         
     }
 }
@@ -60,6 +77,6 @@ class CustomCalendar: UIView {
 extension CustomCalendar: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let value = (collectionView.frame.size.width - 2) / 9
-        return CGSize(width: value, height: value)
+        return CGSize(width: value, height: 30)
     }
 }

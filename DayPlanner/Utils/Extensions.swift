@@ -21,6 +21,13 @@ extension UITextField {
 
 // MARK: - Date
 extension Date {
+    var toDateAndMonthString: String? {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy.MM"        
+        let dateString = formatter.string(from: self)
+        return dateString
+    }
+    
     var toDateString: String? {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyy.MM.dd"
