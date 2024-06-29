@@ -6,13 +6,13 @@
 //
 
 import Foundation
-
+import RxSwift
 // ViewModel이 상속하는 클래스
 protocol ViewModelType {
     associatedtype Input
     associatedtype Output
     
-    func transform(input: Input) -> Output
+    func transform(input: Input) -> Output    
 }
 
 class MemoViewModelType {

@@ -58,19 +58,19 @@ final class CalendarHelper {
         return components.weekday! - 1
     }
     
-    func makeMonth(date: Date) -> Observable<[String]> {
+    func makeMonth(date: Date) -> Observable<[Day]> {
         let daysInMonth = daysInMonth(date: date)
         let firstDayOfMonth = firstOfMonth(date: date)
         let startingSpace = weekDay(date: firstDayOfMonth)
             
         var count: Int = 1
-        var days: [String] = []
+        var days: [Day] = []
         while(count <= 42) {
             if (count <= startingSpace || count - startingSpace > daysInMonth) {
-                days.append("")
+                days.append(Day(dayOfMonth: ""))
             }
             else {
-                days.append("\(count - startingSpace)")
+                days.append(Day(dayOfMonth: "\(count - startingSpace)"))
             }
             count += 1
         }

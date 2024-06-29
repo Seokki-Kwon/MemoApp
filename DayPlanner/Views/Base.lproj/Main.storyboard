@@ -302,19 +302,34 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66Z-LX-gHP">
-                                                            <rect key="frame" x="46.333333333333329" y="55.666666666666657" width="35.333333333333329" height="17"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="66Z-LX-gHP">
+                                                            <rect key="frame" x="46.333333333333329" y="45.666666666666664" width="35.333333333333329" height="17"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dRu-Tv-dxd">
+                                                            <rect key="frame" x="61" y="66.666666666666671" width="6" height="6"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="6" id="vhT-Rs-6hX"/>
+                                                                <constraint firstAttribute="height" constant="6" id="vlQ-PA-uGJ"/>
+                                                            </constraints>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                                    <integer key="value" value="3"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </view>
                                                     </subviews>
                                                     <constraints>
-                                                        <constraint firstItem="66Z-LX-gHP" firstAttribute="centerX" secondItem="EUs-Ej-TOR" secondAttribute="centerX" id="6DR-PL-KmY"/>
-                                                        <constraint firstItem="66Z-LX-gHP" firstAttribute="centerY" secondItem="EUs-Ej-TOR" secondAttribute="centerY" id="U03-yy-ouv"/>
+                                                        <constraint firstItem="66Z-LX-gHP" firstAttribute="centerX" secondItem="EUs-Ej-TOR" secondAttribute="centerX" id="3ZH-A7-FXa"/>
+                                                        <constraint firstItem="dRu-Tv-dxd" firstAttribute="centerX" secondItem="EUs-Ej-TOR" secondAttribute="centerX" id="XwY-I8-sPj"/>
+                                                        <constraint firstItem="66Z-LX-gHP" firstAttribute="centerY" secondItem="EUs-Ej-TOR" secondAttribute="centerY" constant="-10" id="ciG-Sv-ona"/>
+                                                        <constraint firstItem="dRu-Tv-dxd" firstAttribute="top" secondItem="66Z-LX-gHP" secondAttribute="bottom" constant="4" id="mQo-68-UKM"/>
                                                     </constraints>
                                                 </collectionViewCellContentView>
                                                 <connections>
+                                                    <outlet property="colorView" destination="dRu-Tv-dxd" id="jE0-f2-C40"/>
                                                     <outlet property="dayOfMonth" destination="66Z-LX-gHP" id="D0h-Od-w0o"/>
                                                 </connections>
                                             </collectionViewCell>
@@ -378,6 +393,9 @@
                             <constraint firstItem="iz1-Wc-IUr" firstAttribute="trailing" secondItem="fmv-zY-oNC" secondAttribute="trailing" constant="15" id="vrq-YT-rV7"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="calendarView" destination="fmv-zY-oNC" id="TSk-mP-pMw"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ud-nl-7Zh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="lnw-Bd-zKi" userLabel="Exit" sceneMemberID="exit"/>

@@ -35,12 +35,19 @@ class MainViewController: UIViewController {
     private lazy var subViewControllers: [UIViewController] = {
         // binding
         var memoListVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoList") as! MemoListViewController
+        
+        var calendarVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoCalender") as! CalenderViewController
+        
         let storage = CoreDataStorage(modelName: "MemoApp")
-        let viewModel = MemoListViewModel(storage: storage)
-        memoListVC.bind(viewModel: viewModel)
+        let listViewModel = MemoListViewModel(storage: storage)
+        let calendarViewModel = CalendarViewModel(storage: storage)
+        
+        memoListVC.bind(viewModel: listViewModel)
+        calendarVC.bind(viewModel: calendarViewModel)
+        
         return [
             memoListVC,
-            UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "MemoCalender") as! CalenderViewController,
+            calendarVC
         ]
     }()
     private var pageViewController: UIPageViewController!

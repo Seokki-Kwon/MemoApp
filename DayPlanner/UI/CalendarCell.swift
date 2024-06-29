@@ -10,4 +10,5 @@ import UIKit
 class CalendarCell: UICollectionViewCell {
     static let reuseIdentifier = "calCell"
     @IBOutlet weak var dayOfMonth: UILabel!
+    @IBOutlet weak var colorView: UIView!
 }

@@ -19,7 +19,8 @@ class CustomCalendar: UIView {
     private let bag = DisposeBag()
     
     var selectDateSubject = BehaviorRelay<Date>(value: Date())
-    var fullDaySubject = BehaviorRelay<[String]>(value: [])
+    var fullDaySubject = BehaviorRelay<[Day]>(value: [])
+    var memoDataSubject = BehaviorRelay<[Memo]>(value: [])
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -38,16 +39,27 @@ class CustomCalendar: UIView {
             .disposed(by: bag)
         
         fullDaySubject
+            .flatMapLatest { dayArray -> Observable<[Day]> in
+                let resultArray = dayArray.map { day in
+                    let memo = self.memoDataSubject.value.filter { CalendarHelper.shared.daysOfMonth(date: $0.date) == Int(day.dayOfMonth) ?? 0}.first
+                    
+                    return Day(dayOfMonth: day.dayOfMonth, color: memo != nil ? memo?.color : nil)
+                }
+                return Observable.just(resultArray)
+            }
             .asDriver(onErrorJustReturn: [])
             .drive(collectionView.rx.items(cellIdentifier: CalendarCell.reuseIdentifier, cellType: CalendarCell.self)){row, element, cell in
-                cell.dayOfMonth.text = element
+                cell.dayOfMonth.text = element.dayOfMonth
+                cell.colorView.backgroundColor = element.color ?? .clear
             }
             .disposed(by: bag)
+        
+        
         
         nextButton.rx.tap
             .withUnretained(self)
             .flatMap({ (owner, _) in
-              CalendarHelper.shared.plusMonth(date: owner.selectDateSubject.value)
+                CalendarHelper.shared.plusMonth(date: owner.selectDateSubject.value)
             })
             .bind(to: selectDateSubject)
             .disposed(by: bag)

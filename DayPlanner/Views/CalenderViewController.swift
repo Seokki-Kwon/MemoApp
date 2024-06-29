@@ -6,9 +6,21 @@
 //
 
 import UIKit
+import RxSwift
+import RxCocoa
 
-class CalenderViewController: UIViewController {
+class CalenderViewController: UIViewController, BindableType {
+    @IBOutlet weak var calendarView: CustomCalendar!
+    private let bag = DisposeBag()
     
+    var viewModel: CalendarViewModel!
+    
+    func bindViewModel() {
+        viewModel.storage.fetchMemos()
+            .bind(to: calendarView.memoDataSubject)
+            .disposed(by: bag)
+        
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
     }

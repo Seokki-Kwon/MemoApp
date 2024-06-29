@@ -14,6 +14,8 @@
 		825CC9A22C29DE4700B0F0FA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 825CC9A12C29DE4700B0F0FA /* MainViewController.swift */; };
 		8271AC382C2E8F5800160010 /* CalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8271AC372C2E8F5800160010 /* CalendarCell.swift */; };
 		8271AC3A2C2E94E900160010 /* CalendarHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8271AC392C2E94E900160010 /* CalendarHelper.swift */; };
+		827EF4EE2C3063030026F6C6 /* CalendarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827EF4ED2C3063030026F6C6 /* CalendarViewModel.swift */; };
+		827EF4F02C306B4C0026F6C6 /* Day.swift in Sources */ = {isa = PBXBuildFile; fileRef = 827EF4EF2C306B4C0026F6C6 /* Day.swift */; };
 		8285B56B2C294A1600180AF4 /* CalenderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285B56A2C294A1600180AF4 /* CalenderViewController.swift */; };
 		8285B56D2C2953D400180AF4 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8285B56C2C2953D400180AF4 /* MainViewModel.swift */; };
 		829607162C25AF6600068559 /* MemoApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 829607142C25AF6600068559 /* MemoApp.xcdatamodeld */; };
@@ -46,6 +48,8 @@
 		825CC9A12C29DE4700B0F0FA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		8271AC372C2E8F5800160010 /* CalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarCell.swift; sourceTree = "<group>"; };
 		8271AC392C2E94E900160010 /* CalendarHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarHelper.swift; sourceTree = "<group>"; };
+		827EF4ED2C3063030026F6C6 /* CalendarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewModel.swift; sourceTree = "<group>"; };
+		827EF4EF2C306B4C0026F6C6 /* Day.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Day.swift; sourceTree = "<group>"; };
 		8285B56A2C294A1600180AF4 /* CalenderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalenderViewController.swift; sourceTree = "<group>"; };
 		8285B56C2C2953D400180AF4 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		829607152C25AF6600068559 /* MemoModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MemoModel.xcdatamodel; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				8285B56C2C2953D400180AF4 /* MainViewModel.swift */,
 				8213A0B52C21685300AAEEAC /* MemoComposeViewModel.swift */,
 				82C88EA32C1F551400109913 /* MemoListViewModel.swift */,
+				827EF4ED2C3063030026F6C6 /* CalendarViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -176,6 +181,7 @@
 			isa = PBXGroup;
 			children = (
 				82C88E9F2C1F4E2200109913 /* Memo.swift */,
+				827EF4EF2C306B4C0026F6C6 /* Day.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -280,7 +286,9 @@
 				8271AC3A2C2E94E900160010 /* CalendarHelper.swift in Sources */,
 				8271AC382C2E8F5800160010 /* CalendarCell.swift in Sources */,
 				82C88EA22C1F532D00109913 /* MemoStorageType.swift in Sources */,
+				827EF4EE2C3063030026F6C6 /* CalendarViewModel.swift in Sources */,
 				822E1BE62C2DBAEE001B4F54 /* CustomCalendar.swift in Sources */,
+				827EF4F02C306B4C0026F6C6 /* Day.swift in Sources */,
 				82C88E7F2C1F4A7E00109913 /* AppDelegate.swift in Sources */,
 				82971D602C2C476D00D4CE5B /* Type.swift in Sources */,
 				82C88EA02C1F4E2200109913 /* Memo.swift in Sources */,
