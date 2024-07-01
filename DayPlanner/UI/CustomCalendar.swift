@@ -19,7 +19,7 @@ class CustomCalendar: UIView {
     private let bag = DisposeBag()
     
     var selectDateSubject = BehaviorRelay<Date>(value: Date())
-    var fullDaySubject = BehaviorRelay<[Day]>(value: [])
+    var fullDaySubject = BehaviorSubject<[Day]>(value: [])
     var memoDataSubject = BehaviorRelay<[Memo]>(value: [])
     
     override func layoutSubviews() {

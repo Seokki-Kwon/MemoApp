@@ -58,6 +58,7 @@ final class CalendarHelper {
         return components.weekday! - 1
     }
     
+    /// 달력 만드는 함수
     func makeMonth(date: Date) -> Observable<[Day]> {
         let daysInMonth = daysInMonth(date: date)
         let firstDayOfMonth = firstOfMonth(date: date)
@@ -77,4 +78,6 @@ final class CalendarHelper {
         
         return Observable.just(days)
     }
+    
+   
 }

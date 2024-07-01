@@ -10,7 +10,7 @@ import RxSwift
 import RxCocoa
 import UIKit
 
-// Input -> title, content, saveButtonTap
+// Input -> title, content, saveButtonTap1
 // Output -> saveMemo, dismiss
 // ControlProperty: Subject같은 개념, UIElement.rx를 통해서 접근
 

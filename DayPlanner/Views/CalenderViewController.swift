@@ -16,7 +16,19 @@ class CalenderViewController: UIViewController, BindableType {
     var viewModel: CalendarViewModel!
     
     func bindViewModel() {
-        viewModel.storage.fetchMemos()
+        let seletedDateSubject = BehaviorRelay(value: Date())
+        
+        let input = CalendarViewModel.Input(seletedDate: seletedDateSubject)
+        
+        let output = viewModel.transform(input: input)
+        
+        // 선택된 달의 정보를 바인딩
+        calendarView.selectDateSubject
+            .bind(to: seletedDateSubject)
+            .disposed(by: bag)
+        
+        // 선택한 달의 메모만 보여주기
+        output.currentMonthMemo
             .bind(to: calendarView.memoDataSubject)
             .disposed(by: bag)
         

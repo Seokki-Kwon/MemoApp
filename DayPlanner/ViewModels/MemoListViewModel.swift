@@ -16,7 +16,7 @@ final class MemoListViewModel: MemoViewModelType, ViewModelType {
     private let memoComposeTrigger = PublishSubject<Void>()
     private let memoCellSubject = PublishSubject<Memo>()
     
-    private var memos: Observable<[Memo]> {
+    private var memoData: Observable<[Memo]> {
         return storage.fetchMemos()
     }
     
@@ -39,7 +39,7 @@ final class MemoListViewModel: MemoViewModelType, ViewModelType {
             .bind(to: memoComposeTrigger)
             .disposed(by: bag)
         
-        return Output(tableViewDriver: memos.asDriver(onErrorJustReturn: []), presentMemoComposeVC: memoComposeTrigger,
+        return Output(tableViewDriver: memoData.asDriver(onErrorJustReturn: []), presentMemoComposeVC: memoComposeTrigger,
                       goToMemoDetailVC: memoCellSubject)
     }
 }

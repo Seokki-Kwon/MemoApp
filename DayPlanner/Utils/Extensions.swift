@@ -42,6 +42,17 @@ extension Date {
         let dateString = formatter.string(from: self)
         return dateString
     }
+    
+    /// 이번달인지 체크하는 함수
+    func checkCurrnetMotnh(date: Date) -> Bool {
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let currentYear = calendar.component(.year, from: self)
+        let currentMonth = calendar.component(.month, from: self)
+        
+        return year == currentYear && month == currentMonth
+    }
 }
 
 // MARK: - UIViewController

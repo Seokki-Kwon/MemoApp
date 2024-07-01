@@ -65,6 +65,9 @@
                     <navigationItem key="navigationItem" id="YnW-vh-8rC">
                         <barButtonItem key="leftBarButtonItem" title="Item" id="QK9-GO-dg4">
                             <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <action selector="testButton:" destination="Zfe-mP-wYw" id="aft-7R-hvq"/>
+                            </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" id="uQS-rx-zyK">
                             <imageReference key="image" image="gearshape" catalog="system" symbolScale="medium"/>
@@ -80,6 +83,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6wD-ZC-oOH" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="Zfe-mP-wYw" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="6672.5190839694651" y="-718.30985915492965"/>
         </scene>
@@ -228,7 +232,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fmv-zY-oNC" customClass="CustomCalendar" customModule="DayPlanner" customModuleProvider="target">
-                                <rect key="frame" x="15" y="69" width="363" height="350"/>
+                                <rect key="frame" x="15" y="69" width="363" height="330"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2024.06" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CWy-an-oue">
                                         <rect key="frame" x="146.33333333333334" y="14.999999999999998" width="70.333333333333343" height="20.333333333333329"/>
@@ -287,7 +291,7 @@
                                         </constraints>
                                     </stackView>
                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="nLl-hg-eBz">
-                                        <rect key="frame" x="0.0" y="80.333333333333343" width="363" height="269.66666666666663"/>
+                                        <rect key="frame" x="0.0" y="80.333333333333357" width="363" height="249.66666666666663"/>
                                         <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="gtO-oX-jtU">
                                             <size key="itemSize" width="128" height="128"/>
                                             <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -358,7 +362,7 @@
                                 <color key="backgroundColor" systemColor="systemGray6Color"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="nLl-hg-eBz" secondAttribute="bottom" id="5Fa-jO-Lq1"/>
-                                    <constraint firstAttribute="height" constant="350" id="7cH-3S-9yA"/>
+                                    <constraint firstAttribute="height" constant="330" id="7cH-3S-9yA"/>
                                     <constraint firstItem="nLl-hg-eBz" firstAttribute="leading" secondItem="fmv-zY-oNC" secondAttribute="leading" id="9wq-p0-76R"/>
                                     <constraint firstItem="CWy-an-oue" firstAttribute="centerX" secondItem="fmv-zY-oNC" secondAttribute="centerX" id="FmT-10-1Ly"/>
                                     <constraint firstItem="CWy-an-oue" firstAttribute="top" secondItem="fmv-zY-oNC" secondAttribute="top" constant="15" id="Kmm-YZ-Z0A"/>
