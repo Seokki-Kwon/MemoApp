@@ -25,16 +25,11 @@ final class CalendarViewModel: MemoViewModelType, ViewModelType {
     }
     
     func transform(input: Input) -> Output {
-        input.seletedDate
-            .withUnretained(self)
-            .subscribe(onNext: { (owner, date) in
-                owner.memoData
-                    .subscribe(onNext: { memoArray in
-                       let filterMemo = memoArray.filter { $0.date.checkCurrnetMotnh(date: date) }
-                        owner.currentMonthMemo.accept(filterMemo)
-                    })
-                    .disposed(by: owner.bag)
-            })
+        Observable.combineLatest(input.seletedDate, memoData)
+            .map { (date, memoArray) in
+                memoArray.filter { $0.date.checkCurrnetMotnh(date: date)}
+            }
+            .bind(to: currentMonthMemo)
             .disposed(by: bag)
         
         return Output(

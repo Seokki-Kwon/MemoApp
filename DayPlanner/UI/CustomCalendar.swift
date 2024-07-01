@@ -54,8 +54,6 @@ class CustomCalendar: UIView {
             }
             .disposed(by: bag)
         
-        
-        
         nextButton.rx.tap
             .withUnretained(self)
             .flatMap({ (owner, _) in
