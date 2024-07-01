@@ -53,6 +53,18 @@ extension Date {
         
         return year == currentYear && month == currentMonth
     }
+    
+    /// 같은 날짜인지 체크하는 함수
+    func checkCurrentDay(date: Date) -> Bool {
+        let calendar = Calendar.current
+        let day = calendar.component(.day, from: date)
+        let month = calendar.component(.month, from: date)
+        
+        let currentDay = calendar.component(.day, from: self)
+        let currentMonth = calendar.component(.month, from: self)
+        
+        return day == currentDay && month == currentMonth
+    }
 }
 
 // MARK: - UIViewController

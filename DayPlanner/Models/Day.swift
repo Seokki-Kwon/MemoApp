@@ -9,5 +9,6 @@ import UIKit
 
 struct Day {
     let dayOfMonth: String
-    var color: UIColor? 
+    let date: Date
+    var color: UIColor?
 }

@@ -66,12 +66,19 @@ final class CalendarHelper {
             
         var count: Int = 1
         var days: [Day] = []
+        
         while(count <= 42) {
             if (count <= startingSpace || count - startingSpace > daysInMonth) {
-                days.append(Day(dayOfMonth: ""))
+                days.append(Day(dayOfMonth: ""
+                                , date: Date()))
             }
             else {
-                days.append(Day(dayOfMonth: "\(count - startingSpace)"))
+                let numberOfDay = count - startingSpace
+                guard let date = calendar.date(byAdding: .day, value: numberOfDay - 1, to: firstOfMonth(date: date)) else {
+                    return Observable.empty()
+                }
+                days.append(Day(dayOfMonth: "\(count - startingSpace)",
+                                date: date))
             }
             count += 1
         }

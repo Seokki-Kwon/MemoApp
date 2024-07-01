@@ -15,6 +15,7 @@ final class CalendarViewModel: MemoViewModelType, ViewModelType {
     }
     private let bag = DisposeBag()
     private let currentMonthMemo = BehaviorRelay<[Memo]>(value: [])
+    private let currentDayMemo = BehaviorRelay<[Memo]>(value: [])
     
     struct Input {
         let seletedDate: BehaviorRelay<Date>

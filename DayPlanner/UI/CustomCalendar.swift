@@ -21,6 +21,8 @@ class CustomCalendar: UIView {
     var selectDateSubject = BehaviorRelay<Date>(value: Date())
     var fullDaySubject = BehaviorSubject<[Day]>(value: [])
     var memoDataSubject = BehaviorRelay<[Memo]>(value: [])
+    var currentDayMemo = BehaviorRelay<[Memo]>(value: [])
+    var currentDate = BehaviorRelay<Date>(value: Date())
     
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -38,19 +40,21 @@ class CustomCalendar: UIView {
         collectionView.rx.setDelegate(self)
             .disposed(by: bag)
         
-        fullDaySubject
+        Observable.combineLatest(fullDaySubject, currentDate)
+            .map { $0.0 }
             .flatMapLatest { dayArray -> Observable<[Day]> in
                 let resultArray = dayArray.map { day in
                     let memo = self.memoDataSubject.value.filter { CalendarHelper.shared.daysOfMonth(date: $0.date) == Int(day.dayOfMonth) ?? 0}.first
                     
-                    return Day(dayOfMonth: day.dayOfMonth, color: memo != nil ? memo?.color : nil)
+                    return Day(dayOfMonth: day.dayOfMonth, date: day.date, color: memo != nil ? memo?.color : nil)
                 }
                 return Observable.just(resultArray)
             }
             .asDriver(onErrorJustReturn: [])
-            .drive(collectionView.rx.items(cellIdentifier: CalendarCell.reuseIdentifier, cellType: CalendarCell.self)){row, element, cell in
+            .drive(collectionView.rx.items(cellIdentifier: CalendarCell.reuseIdentifier, cellType: CalendarCell.self)){ [weak self] row, element, cell in
+                
                 cell.dayOfMonth.text = element.dayOfMonth
-                cell.colorView.backgroundColor = element.color ?? .clear
+                cell.colorView.backgroundColor = element.color ?? .clear                                   
             }
             .disposed(by: bag)
         
@@ -81,12 +85,24 @@ class CustomCalendar: UIView {
             .drive(monthLabel.rx.text)
             .disposed(by: bag)
         
+        Observable.combineLatest(memoDataSubject, collectionView.rx.modelSelected(Day.self))
+            .map { (memoArray, model) in
+                memoArray.filter { String(CalendarHelper.shared.daysOfMonth(date: $0.date)) == model.dayOfMonth }
+            }
+            .bind(to: currentDayMemo)
+            .disposed(by: bag)
+        
+        collectionView.rx.modelSelected(Day.self)
+            .map { $0.date }
+            .bind(to: currentDate)
+            .disposed(by: bag)
+
     }
 }
 
 extension CustomCalendar: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let value = (collectionView.frame.size.width - 2) / 9
-        return CGSize(width: value, height: 30)
+        return CGSize(width: value, height: value)
     }
 }
